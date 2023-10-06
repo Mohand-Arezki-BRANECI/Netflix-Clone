@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {faHome, faList, faSitemap} from "@fortawesome/free-solid-svg-icons";
+import {faHome, faList, faMagnifyingGlass, faSitemap} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +8,15 @@ import {faHome, faList, faSitemap} from "@fortawesome/free-solid-svg-icons";
 })
 export class NavbarComponent {
 
-  protected readonly faSitemap = faSitemap;
-  protected readonly faList = faList;
-  protected readonly faHome = faHome;
+  protected readonly faMagnifyingGlass = faMagnifyingGlass;
+  protected animationClass = ''
+
+  addAndRemoveClass() {
+      this.animationClass = 'fa-flip';
+      setTimeout(() => {
+        this.animationClass = '';
+      }, 1000);
+  }
+
+
 }
