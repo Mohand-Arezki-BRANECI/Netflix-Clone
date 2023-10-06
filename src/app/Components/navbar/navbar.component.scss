@@ -23,12 +23,12 @@
 #netflix-clone-navbar{
   height: 10vh;
   background-color: black !important;
-  border-bottom: solid black 1px;
+  border-bottom: solid grey 1px;
 }
 
 
 .nav-link{
-  margin-left: 5vw;
+  margin-left: 4vw;
   font-size: 1.4vw;
   font-family: "Baskerville Old Face" ;
   font-weight: bold;
@@ -43,6 +43,11 @@
 #websiteTitle{
   margin-left: 12vw;
   font-size: 3vw;
+}
+#websiteTitle:hover{
+  color:#c80000;
+  transform: none;
+  cursor:pointer;
 }
 
 .nav-link:hover{
