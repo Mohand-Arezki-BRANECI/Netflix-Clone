@@ -1,3 +1,52 @@
 #search{
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 3.5vh;
+  margin-right: 2vw;
+}
 
+#search .form-inline{
+  display: flex;
+}
+
+#search .form-inline .form-control{
+  margin-right: 1vw;
+}
+
+#search .form-inline .btn{
+  background-color: white;
+  border-color: green;
+  color: green;
+}
+
+#netflix-clone-navbar{
+  height: 10vh;
+  background-color: black !important;
+  border-bottom: solid black 1px;
+}
+
+
+.nav-link{
+  margin-left: 5vw;
+  font-size: 1.4vw;
+  font-family: "Baskerville Old Face" ;
+  font-weight: bold;
+  color:#c80000;
+  padding-top:2vh;
+}
+
+.input-group-append{
+  padding-left: 1vw;
+}
+
+#websiteTitle{
+  margin-left: 12vw;
+  font-size: 3vw;
+}
+
+.nav-link:hover{
+  color: white;
+  transform: scale(1.2);
+  transition: 0.5s;
 }
