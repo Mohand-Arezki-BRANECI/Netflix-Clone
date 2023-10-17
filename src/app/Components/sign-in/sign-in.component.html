@@ -1,1 +1,18 @@
-<p>sign-in works!</p>
+<div class="signInPage">
+<div class="main">
+  <div class="login text-center">
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+      <label>Sign In</label>
+      <input type="email" name="userEmail" placeholder="Email" formControlName="userEmail">
+      <span class="text-danger" *ngIf="userEmailControl?.invalid && userEmailControl?.touched">Email is not valid</span>
+      <br>
+      <input type="password" name="userPassword" placeholder="Password" formControlName="userPassword">
+      <span class="text-danger" *ngIf="userPasswordControl?.invalid && userPasswordControl?.touched">Password is required</span>
+      <br>
+      <button type="submit" [disabled]="!signInForm.valid">Login</button>
+    </form>
+    <a [routerLink]="['/sign_up']">Don't have an account yet? Sign Up!</a>
+  </div>
+</div>
+</div>
+
