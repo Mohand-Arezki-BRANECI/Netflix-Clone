@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {NavbarComponent} from "./Components/navbar/navbar.component";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Netflix-Clone';
+  title : String  = 'Netflix-Clone';
+  showNavbar: boolean = true;
 }

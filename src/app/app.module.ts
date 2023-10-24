@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
-import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { MoviesComponent } from './Components/movies/movies.component';
 import { TvshowsComponent } from './Components/tvshows/tvshows.component';
 import { HomepageComponent } from './Components/homepage/homepage.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SignUpComponent} from "./Components/sign-up/sign-up.component";
+import {HttpClientModule} from "@angular/common/http";
+import { MovieCardComponent } from './Components/movie-card/movie-card.component';
+import {NgOptimizedImage} from "@angular/common";
+import { MovieDetailsComponent } from './Components/movie-details/movie-details.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -19,11 +25,18 @@ import { HomepageComponent } from './Components/homepage/homepage.component';
     MoviesComponent,
     TvshowsComponent,
     HomepageComponent,
+    MovieCardComponent,
+    MovieDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgOptimizedImage,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-tvshows',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./tvshows.component.scss']
 })
 export class TvshowsComponent {
+
+
 
 }

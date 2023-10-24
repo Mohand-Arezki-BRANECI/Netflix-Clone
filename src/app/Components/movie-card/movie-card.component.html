@@ -1,0 +1,13 @@
+<a routerLink="/movie_details">
+<div class="movie">
+      <div><p>{{movie?.original_title}}</p></div>
+      <div> <img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" alt=""></div>
+</div>
+  <p>
+    {{movie?.original_title}}
+    <br>
+    Popularity : {{movie?.popularity}}
+    <br>
+    Release date : {{movie?.release_date}}
+  </p>
+</a>
