@@ -5,6 +5,7 @@ import {SignInComponent} from "./Components/sign-in/sign-in.component";
 import {HomepageComponent} from "./Components/homepage/homepage.component";
 import {MoviesComponent} from "./Components/movies/movies.component";
 import {TvshowsComponent} from "./Components/tvshows/tvshows.component";
+import {MovieDetailsComponent} from "./Components/movie-details/movie-details.component";
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'tvshows', component: TvshowsComponent },
   { path: 'sign_up', component: SignUpComponent },
   { path: 'sign_in', component: SignInComponent },
+  { path: 'movie_details', component: MovieDetailsComponent },
 ];
 
 @NgModule({

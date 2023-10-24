@@ -9,23 +9,35 @@ import { MoviesComponent } from './Components/movies/movies.component';
 import { TvshowsComponent } from './Components/tvshows/tvshows.component';
 import { HomepageComponent } from './Components/homepage/homepage.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SignUpComponent} from "./Components/sign-up/sign-up.component";
+import {HttpClientModule} from "@angular/common/http";
+import { MovieCardComponent } from './Components/movie-card/movie-card.component';
+import {NgOptimizedImage} from "@angular/common";
+import { MovieDetailsComponent } from './Components/movie-details/movie-details.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
+    SignUpComponent,
     NavbarComponent,
     MoviesComponent,
     TvshowsComponent,
     HomepageComponent,
+    MovieCardComponent,
+    MovieDetailsComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgOptimizedImage,
+    FontAwesomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,14 +1,8 @@
 import {Component} from '@angular/core';
 import {
-  Validators,
-  FormsModule,
-  ReactiveFormsModule, FormGroup, FormBuilder,
+  Validators, FormGroup, FormBuilder,
 } from '@angular/forms';
-import {NgIf} from '@angular/common';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
+
 import {Router, RouterLink} from "@angular/router";
 import {AppComponent} from "../../app.component";
 import {User} from "../../Model/user";
@@ -18,8 +12,8 @@ import {User} from "../../Model/user";
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
-  standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf, MatCheckboxModule, MatAutocompleteModule, RouterLink],
+  //standalone: true,
+  //imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf, MatCheckboxModule, MatAutocompleteModule, RouterLink],
 })
 export class SignUpComponent{
   protected signUpForm: FormGroup;

@@ -41,7 +41,6 @@ export class SignInComponent implements OnInit{
   protected onSubmit(){
     this.setSignInFormData(this.signInForm.value)
   }
-
   ngOnInit(): void {
     const localData : string | null = localStorage.getItem('signedUpUsers');
     if(localData != null){
