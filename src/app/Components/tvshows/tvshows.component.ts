@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {MoviesService} from "../../Service/movies.service";
 import {Movie} from "../../Model/movie";
 

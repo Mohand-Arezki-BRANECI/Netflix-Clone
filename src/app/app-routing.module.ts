@@ -6,7 +6,6 @@ import {HomepageComponent} from "./Components/homepage/homepage.component";
 import {MoviesComponent} from "./Components/movies/movies.component";
 import {TvshowsComponent} from "./Components/tvshows/tvshows.component";
 import {MovieDetailsComponent} from "./Components/movie-details/movie-details.component";
-import {SearchbarComponent} from "./Components/searchbar/searchbar.component";
 import {SearchResultsComponent} from "./Components/search-results/search-results.component";
 
 
