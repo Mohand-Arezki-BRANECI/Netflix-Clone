@@ -9,4 +9,7 @@ import {NavbarComponent} from "./Components/navbar/navbar.component";
 export class AppComponent {
   title : String  = 'Netflix-Clone';
   showNavbar: boolean = true;
+
 }
+
+
