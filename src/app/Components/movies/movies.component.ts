@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MoviesService} from '../../Service/movies.service'
 import {Movie} from "../../Model/movie";
 
@@ -9,16 +9,28 @@ import {Movie} from "../../Model/movie";
 })
 export class MoviesComponent {
   movies : Movie | undefined;
+  receivedMovies: Movie | undefined;
+
   constructor(private movie : MoviesService) {
     this.movie.getData().subscribe(data => {
-      console.warn(data);
-      console.log("The fetched data : ", data)
       this.movies = data;
-      console.log(this.movies.results[1].title)
-      this.movies.results.map(movie  =>{
-        console.log(movie.title);
-      })
+      console.log("the movies fetched from movies : ", this.movies)
     })
+     this.movie.getMessage().subscribe(films =>{
+      this.receivedMovies = films;
+      console.log("films ::::::::::::::::::::::: " , this.receivedMovies);
+    })
+
   }
+
+
+
+
+
+
+
+
+
+
 
 }

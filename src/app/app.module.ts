@@ -15,6 +15,9 @@ import { MovieCardComponent } from './Components/movie-card/movie-card.component
 import {NgOptimizedImage} from "@angular/common";
 import { MovieDetailsComponent } from './Components/movie-details/movie-details.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { SearchbarComponent } from './Components/searchbar/searchbar.component';
+import { SearchResultsComponent } from './Components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -27,17 +30,20 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     HomepageComponent,
     MovieCardComponent,
     MovieDetailsComponent,
+    SearchbarComponent,
+    SearchResultsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgOptimizedImage,
-    FontAwesomeModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgOptimizedImage,
+        FontAwesomeModule,
+        MatPaginatorModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
