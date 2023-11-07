@@ -31,7 +31,7 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
     MovieCardComponent,
     MovieDetailsComponent,
     SearchbarComponent,
-    SearchResultsComponent,
+    SearchResultsComponent
   ],
     imports: [
         BrowserModule,

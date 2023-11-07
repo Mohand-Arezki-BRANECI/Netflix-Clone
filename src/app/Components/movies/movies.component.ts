@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MoviesService} from '../../Service/movies.service'
+import {MoviesService} from '../../Service/MovieList/movies.service'
 import {Movie} from "../../Model/movie";
 
 @Component({

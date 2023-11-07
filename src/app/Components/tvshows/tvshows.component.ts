@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MoviesService} from "../../Service/movies.service";
+import {MoviesService} from "../../Service/MovieList/movies.service";
 import {Movie} from "../../Model/movie";
 
 @Component({
@@ -8,7 +8,7 @@ import {Movie} from "../../Model/movie";
   styleUrls: ['./tvshows.component.scss']
 })
 export class TvshowsComponent {
-tvShows : Movie | undefined
+tvShows : Movie | undefined;
 
   constructor(private movie : MoviesService) {
     this.movie.getTvShows().subscribe(data => {

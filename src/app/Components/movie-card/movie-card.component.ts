@@ -11,6 +11,8 @@ import {AppComponent} from "../../app.component";
 })
 export class MovieCardComponent {
     @Input() movie : Movies | undefined
+    @Input() tvShow : Movies | undefined
+    @Input() searchResult : Movies | undefined
 
   protected readonly faStar = faStar;
   isFavoriteClass = 'icon-favorite';
