@@ -1,4 +1,47 @@
-  <div class="movie">
-    <div><p>movie title {{movie?.original_title}}</p></div>
+
+<div class="movieDetailCard" *ngIf="movieDetail !== undefined ">
+
+  <div class="movieHeader">
+    <span id = "movieTitle">{{movieDetail?.original_title}}</span>
+    <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movieDetail?.id)"></fa-icon>
   </div>
+
+
+  <div id="movieContent">
+
+    <img id="moviePicture" src="https://image.tmdb.org/t/p/w500/{{movieDetail?.poster_path}}" alt="" >
+
+    <div id="movieInfo">
+
+      <span class="movieInfoTitle">Summary :</span>
+      <div class="movieInfo">
+        {{movieDetail?.overview}}
+      </div>
+
+      <span class="movieInfoTitle">Popularity :</span>
+      <div class="movieInfo">
+        {{movieDetail?.popularity}}
+      </div>
+
+      <span class="movieInfoTitle">Release :</span>
+      <div class="movieInfo">
+        {{changeFormatDate(movieDetail?.release_date)}}
+      </div>
+
+      <span class="movieInfoTitle">Vote :</span>
+      <div class="movieInfo">
+        <fa-icon [icon]="faRankingStar" id=""></fa-icon>
+
+        {{movieDetail?.vote_average}}/10
+        on
+        {{movieDetail?.vote_count}}
+        views.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 

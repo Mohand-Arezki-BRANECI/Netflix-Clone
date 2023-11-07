@@ -1,7 +1,7 @@
 .movie {
-  width: 250px;
-  height: 400px;
-  margin: 1.5rem;
+  width: 15vw;
+  height: 40vh;
+  margin: 1vh 2vw;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
@@ -29,6 +29,39 @@
   height: 100%;
   width: 100%;
 }
+.textMovie{
+  color:white;
+padding-top: 4vh;
+}
+
+.textMovie .movieOriginalTitle{
+  text-align: center;
+font-weight: bold;
+  font-size: 1vw;
+  width: 100%;
+}
+
+.textMovie .movieOtherInformations{
+padding-left: 4vw;
+  margin-bottom: 1vh;
+}
+.movie .icon-not-favorite,
+.movie .icon-favorite{
+  position: absolute;
+  font-size: 1.2vw;
+  padding: 1vh 0.4vw;
+}
+
+.movie .icon-favorite{
+  color: yellow;
+
+}
+
+.movie .icon-not-favorite{
+  color: grey;
+
+}
+
 @media screen and (max-width: 400px) {
   .app {
     padding: 4rem 1rem;

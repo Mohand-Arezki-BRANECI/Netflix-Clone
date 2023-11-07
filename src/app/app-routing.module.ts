@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'tvshows', component: TvshowsComponent },
   { path: 'sign_up', component: SignUpComponent },
   { path: 'sign_in', component: SignInComponent },
-  { path: 'movie_details', component: MovieDetailsComponent },
+  { path: 'movie_details/:id', component: MovieDetailsComponent },
   { path: 'search_results', component: SearchResultsComponent },
 ];
 
