@@ -1,17 +1,36 @@
+<a routerLink="/movie_details" *ngIf="movie">
+
 <div class="movieCard">
   <div class="movie">
     <div><p>{{movie?.original_title}}</p></div>
-      <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movie?.id)"></fa-icon>
-      <div>
-        <a routerLink="/movie_details" (click)="navigateToDetail()"><img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" alt=""></a></div>
-      </div>
-    <div class="textMovie">
-      <div class="movieOriginalTitle">{{movie?.original_title}}</div>
-      <br>
-      <div class="movieOtherInformations">
+    <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movie?.id)"></fa-icon>
+    <div>
+      <a routerLink="/movie_details" (click)="navigateToDetail()"><img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" alt=""></a></div>
+  </div>
+  <div class="textMovie">
+    <div class="movieOriginalTitle">{{movie?.original_title}}</div>
+    <br>
+    <div class="movieOtherInformations">
       Popularity : {{movie?.popularity}}
       <br>
       Release date : {{changeFormatDate(movie?.release_date)}}
     </div>
   </div>
 </div>
+</a>
+
+
+<a routerLink="/movie_details" *ngIf="tvShow">
+  <div class="movie">
+    <div><p>{{tvShow.original_title}}</p></div>
+    <div> <img src="https://image.tmdb.org/t/p/w500/{{tvShow.poster_path}}" alt=""></div>
+  </div>
+  <p>
+    {{tvShow.original_title}}
+    <br>
+    Popularity : {{tvShow.popularity}}
+    <br>
+    Release date : {{tvShow.release_date}}
+  </p>
+</a>
+

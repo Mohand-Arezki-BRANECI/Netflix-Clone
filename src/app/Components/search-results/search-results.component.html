@@ -1,0 +1,3 @@
+<div class="movies" *ngIf="searchResults != undefined">
+  <app-movie-card *ngFor="let tvShow of searchResults?.results" [tvShow]="tvShow"></app-movie-card>
+</div>
