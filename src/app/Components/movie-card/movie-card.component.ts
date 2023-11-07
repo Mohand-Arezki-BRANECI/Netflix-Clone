@@ -7,6 +7,9 @@ import {Movies} from "../../Model/movie";
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent {
-    @Input() movie : Movies | undefined
-
+    @Input() movie : Movies | undefined;
+    @Input() tvShow : Movies | undefined;
+    @Input() searchResult : Movies | undefined
+    constructor() {
+    }
 }

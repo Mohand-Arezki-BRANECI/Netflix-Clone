@@ -1,6 +1,6 @@
 export interface Movie {
   page: number;
-  results: Movies[]; // Assuming each result is a movie, you can create a Movie interface
+  results: Movies[];
   total_pages: number;
   total_results: number;
 }

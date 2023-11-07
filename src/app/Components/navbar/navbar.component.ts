@@ -16,6 +16,7 @@ export class NavbarComponent {
       setTimeout(() => {
         this.animationClass = '';
       }, 1000);
+
   }
 
 
