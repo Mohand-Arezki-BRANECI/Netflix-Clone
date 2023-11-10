@@ -1,5 +1,4 @@
-
-<div class="movieCard">
+<div class="movieCard" *ngIf="movie">
   <div class="movie">
     <div><p>{{movie?.original_title}}</p></div>
     <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movie?.id)"></fa-icon>
@@ -16,19 +15,26 @@
     </div>
   </div>
 </div>
-
-
-<a routerLink="/movie_details" *ngIf="tvShow">
+<div class="movieCard" *ngIf="tvShow">
   <div class="movie">
-    <div><p>{{tvShow.original_title}}</p></div>
-    <div> <img src="https://image.tmdb.org/t/p/w500/{{tvShow.poster_path}}" alt=""></div>
+    <div><p>{{tvShow?.original_name}}</p></div>
+    <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(tvShow?.id)"></fa-icon>
+    <div>
+      <a routerLink="/movie_details" (click)="navigateToDetail()"><img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt=""></a></div>
   </div>
-  <p>
-    {{tvShow.original_title}}
+  <div class="textMovie">
+    <div class="movieOriginalTitle">{{tvShow?.original_name}}</div>
     <br>
-    Popularity : {{tvShow.popularity}}
-    <br>
-    Release date : {{tvShow.release_date}}
-  </p>
-</a>
+    <div class="movieOtherInformations">
+      Popularity : {{tvShow?.popularity}}
+      <br>
+      Popularity : {{tvShow.original_language}}
+<br>
+     <p>hhhhhh:{{tvShow.first_air_date}}</p>
+    </div>
+  </div>
+</div>
+
+
+
 

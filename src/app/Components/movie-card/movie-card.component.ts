@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {Movie, Movies} from "../../Model/movie";
-import {faMagnifyingGlass, faStar} from "@fortawesome/free-solid-svg-icons";
+import {Movies} from "../../Model/movie";
+import { faStar} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
-import {AppComponent} from "../../app.component";
+import {TvShows} from "../../Model/tvShow";
 
 @Component({
   selector: 'app-movie-card',
@@ -11,7 +11,7 @@ import {AppComponent} from "../../app.component";
 })
 export class MovieCardComponent {
     @Input() movie : Movies | undefined
-    @Input() tvShow : Movies | undefined
+    @Input() tvShow : TvShows | undefined
     @Input() searchResult : Movies | undefined
 
   protected readonly faStar = faStar;
