@@ -1,7 +1,8 @@
-<form (submit)="onSubmit()">
-  <input [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search">
-  <button type="submit">search</button>
+<form (submit)="onSubmit()" class="netflix-search-bar">
+  <input [(ngModel)]="searchQuery" name="searchQuery" placeholder="Search" class="netflix-search-input">
+  <button type="submit" class="netflix-search-button">Search</button>
 </form>
+
 
 
 

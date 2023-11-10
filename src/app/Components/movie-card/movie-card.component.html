@@ -20,7 +20,7 @@
     <div><p>{{tvShow?.original_name}}</p></div>
     <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(tvShow?.id)"></fa-icon>
     <div>
-      <a routerLink="/movie_details" (click)="navigateToDetail()"><img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt=""></a></div>
+      <a routerLink="/movie_details" (click)="navigateToTvShowDetail()"><img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt=""></a></div>
   </div>
   <div class="textMovie">
     <div class="movieOriginalTitle">{{tvShow?.original_name}}</div>
@@ -28,9 +28,7 @@
     <div class="movieOtherInformations">
       Popularity : {{tvShow?.popularity}}
       <br>
-      Popularity : {{tvShow.original_language}}
-<br>
-     <p>hhhhhh:{{tvShow.first_air_date}}</p>
+      Release date : {{changeFormatDate(tvShow.first_air_date)}}
     </div>
   </div>
 </div>
