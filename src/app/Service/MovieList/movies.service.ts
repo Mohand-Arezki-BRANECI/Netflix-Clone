@@ -28,12 +28,12 @@ export class MoviesService {
     this.apiKey = "5a26726d5a44298c7d75f5cb0dec5252";
     this.url1 = "https://api.themoviedb.org/3/search/multi?api_key=5a26726d5a44298c7d75f5cb0dec5252";
   }
-  getData(){
-    let url: string = "https://api.themoviedb.org/3/discover/movie?api_key=5a26726d5a44298c7d75f5cb0dec5252";
+  getData(page : number){
+    let url: string = "https://api.themoviedb.org/3/discover/movie?api_key=5a26726d5a44298c7d75f5cb0dec5252&page="+page;
     return this.httpClient.get<Movie>(url);
   }
-  getTvShows(){
-    let url: string = "https://api.themoviedb.org/3/discover/tv?api_key=5a26726d5a44298c7d75f5cb0dec5252";
+  getTvShows(page: number){
+    let url: string = "https://api.themoviedb.org/3/discover/tv?api_key=5a26726d5a44298c7d75f5cb0dec5252&page="+page;
     return this.httpClient.get<TvShow>(url);
   }
   getDataFromSearch(searchQuery : string){
