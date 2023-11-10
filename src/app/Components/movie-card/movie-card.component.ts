@@ -17,7 +17,7 @@ export class MovieCardComponent {
   protected readonly faStar = faStar;
   isFavoriteClass = 'icon-favorite';
   date : string = '';
-  months = ["Jan", "Fév", "Mars", "Avr", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc", ]
+  months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec", ]
 
   constructor(private router: Router) {}
 
@@ -36,7 +36,7 @@ export class MovieCardComponent {
     if(ymd == undefined){
       return "";
     }else{
-      return ymd.split("-")[2] + " " + this.months[parseInt(ymd.split("-")[1])] + " " + ymd.split("-")[0]
+      return ymd.split("-")[2] + " " + this.months[parseInt(ymd.split("-")[1])-1] + " " + ymd.split("-")[0]
     }
   }
 
@@ -44,5 +44,8 @@ export class MovieCardComponent {
     this.router.navigate(['/movie_details', this.movie?.id]).then();
   }
 
+    navigateToTvShowDetail() {
+        this.router.navigate(['/movie_details', this.tvShow?.id]).then();
+    }
 
 }

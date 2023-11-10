@@ -2,7 +2,7 @@
   color: white;
 }
 
-#movieContent{
+.movieContent{
   border: solid 1px white;
   border-radius: 10px;
   padding: 2vh 1vw;
@@ -18,30 +18,35 @@
   padding-top: 4vh;
 }
 
-#movieTitle{
+.movieTitle{
   color: white !important;
 }
 
-#moviePicture{
+
+.moviePicture{
   width: 25vw;
   height: 60vh;
   margin-left: 5vw;
   margin-top: 5vh;
 }
-#movieInfo{
+.movieInfo{
+  color: white;
+}
+
+.movieInfs{
   border-left: solid 1px white;
   margin-left: 5vw;
   color: white;
   padding: 3vh 0vw 0vh 2vw;
 }
 
-#movieInfo .movieInfoTitle{
+.movieInfs .movieInfoTitle{
   font-weight: bold;
   text-decoration: underline;
   font-size:1.4vw !important;
 }
 
-#movieInfo .movieInfo{
+.movieInfs .movieInfo{
   margin-top: 2vh;
 }
 
@@ -53,7 +58,7 @@
   text-align: center;
   font-weight: bold;
   font-size: 2vw;
-  font-family: "Roboto Light";
+  font-family: "Roboto Light", sans-serif;
   width: 100%;
 }
 
