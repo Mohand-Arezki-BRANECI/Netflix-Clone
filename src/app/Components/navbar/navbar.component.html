@@ -1,11 +1,11 @@
 <nav id="netflix-clone-navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-
   <a class="nav-link" routerLink="/homepage">Home</a>
   <a class="nav-link" routerLink="/movies">Movies</a>
   <a class="nav-link" routerLink="/tvshows">TV Shows</a>
+  <a class="nav-link" routerLink="/myspace">My space</a>
   <a id="websiteTitle" class="nav-link" routerLink="/homepage">G E T F L I X</a>
 
-<div id="search">
+<div id="search" *ngIf="showSearchBar">
   <div class="input-group">
     <app-searchbar></app-searchbar>
   </div>

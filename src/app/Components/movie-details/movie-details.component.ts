@@ -18,7 +18,7 @@ export class MovieDetailsComponent {
   movieTitle:String = ''
   protected readonly faStar: IconDefinition  = faStar;
   isFavoriteClass = 'icon-favorite';
-  months = ["Jan", "Fév", "Mars", "Avr", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc", ]
+  months = ["Jan", "Feb", "March", "Avr", "May", "June", "Juil", "Août", "Sept", "Oct", "Nov", "Déc", ]
 
 
   constructor(private route: ActivatedRoute, private movie : MovieDetailService) {
