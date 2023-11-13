@@ -20,6 +20,7 @@
 
 #movieTitle{
   color: white !important;
+  margin-right: 1vw ;
 }
 
 #moviePicture{
@@ -28,21 +29,23 @@
   margin-left: 5vw;
   margin-top: 5vh;
 }
-#movieInfo{
+.movieInfs{
   border-left: solid 1px white;
   margin-left: 5vw;
   color: white;
   padding: 3vh 0vw 0vh 2vw;
 }
 
-#movieInfo .movieInfoTitle{
+.movieInfs .movieInfoTitle{
   font-weight: bold;
   text-decoration: underline;
   font-size:1.4vw !important;
 }
 
-#movieInfo .movieInfo{
-  margin-top: 2vh;
+
+
+.movieInfs .movieInfo{
+  margin: 2vh 0vw 3vh 0vw;
 }
 
 .movieDetail img{
@@ -56,6 +59,25 @@
   font-family: "Roboto Light";
   width: 100%;
 }
+.movieHeader .ng-fa-icon.icon-favorite:nth-child(2){
+  color: yellow;
+}
+.movieHeader .ng-fa-icon.icon-favorite:nth-child(3){
+  color: #6c472a ;
+}
+.movieHeader .ng-fa-icon.icon-favorite:nth-child(4){
+  color: #00a700;
+}
+
+.movieHeader .icon-not-favorite{
+  color: grey;
+}
+
+
+.movieHeader .ng-fa-icon{
+  margin-right: 1vw;
+}
+
 
 .textMovie .movieOtherInformations{
   padding-left: 4vw;
