@@ -18,6 +18,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { SearchbarComponent } from './Components/searchbar/searchbar.component';
 import { SearchResultsComponent } from './Components/search-results/search-results.component';
+import {PaginationComponent} from "./Components/pagination/pagination.component";
+import { MyspaceComponent } from './Components/myspace/myspace.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
     MovieCardComponent,
     MovieDetailsComponent,
     SearchbarComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    PaginationComponent,
+    MyspaceComponent,
   ],
     imports: [
         BrowserModule,

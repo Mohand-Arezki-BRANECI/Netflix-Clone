@@ -1,17 +1,14 @@
-
-<div class="movieDetailCard" *ngIf="movieDetail">
+<div class="movieDetailCard" *ngIf="movieDetail !== undefined ">
 
   <div class="movieHeader">
-    <span id = "movieTitle">{{movieDetail?.original_title}}</span>
-    <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="stateFavorite(movieDetail?.id)"></fa-icon>
-    <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="stateMustSee(movieDetail?.id)"></fa-icon>
-    <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="stateSeen(movieDetail?.id)"></fa-icon>
+    <span class = "movieTitle">{{movieDetail?.original_title}}</span>
+    <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movieDetail?.id)"></fa-icon>
   </div>
 
 
-  <div id="movieContent">
+  <div class="movieContent">
 
-    <img id="moviePicture" src="https://image.tmdb.org/t/p/w500/{{movieDetail?.poster_path}}" alt="" >
+    <img class="moviePicture" src="https://image.tmdb.org/t/p/w500/{{movieDetail?.poster_path}}" alt="" >
 
     <div class="movieInfs">
 
@@ -46,4 +43,55 @@
   </div>
 
 </div>
+
+
+
+
+
+<div class="movieDetailCard" *ngIf="tvShowDetail !== undefined ">
+
+  <div class="movieHeader">
+    <span class= "movieTitle">{{tvShowDetail?.name}}</span>
+    <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(tvShowDetail?.id)"></fa-icon>
+  </div>
+
+
+  <div class="movieContent">
+
+    <img class="moviePicture" src="https://image.tmdb.org/t/p/w500/{{tvShowDetail?.poster_path}}" alt="" >
+
+    <div class="movieInfs">
+
+      <span class="movieInfoTitle">Summary :</span>
+      <div class="movieInfo">
+        {{tvShowDetail?.overview}}
+      </div>
+
+      <span class="movieInfoTitle">Popularity :</span>
+      <div class="movieInfo">
+        {{tvShowDetail?.popularity}}
+      </div>
+
+      <span class="movieInfoTitle">Release :</span>
+      <div class="movieInfo">
+        {{changeFormatDate(tvShowDetail?.first_air_date)}}
+      </div>
+
+      <span class="movieInfoTitle">Vote :</span>
+      <div class="movieInfo">
+        <fa-icon [icon]="faRankingStar"></fa-icon>
+
+        {{tvShowDetail?.vote_average}}/10
+        on
+        {{tvShowDetail?.vote_count}}
+        views.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
 
