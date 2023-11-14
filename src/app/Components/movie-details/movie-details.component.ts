@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {Observable} from "rxjs";
 import {TvShows} from "../../Model/tvShow";
+import {MoviesService} from "../../Service/MovieList/movies.service";
 
 @Component({
   selector: 'app-movie-details',
@@ -42,14 +43,21 @@ export class MovieDetailsComponent{
 
 
 
-  constructor(private route: ActivatedRoute, private movie : MovieDetailService) {
+  constructor(private route: ActivatedRoute, private movie : MovieDetailService, public service : MoviesService) {
     this.movieDetail$ =  movie.getDataMovieDetail(this.movieId);
     this.route.params.subscribe(params => {
       this.movieId = params['id'];
+      this.tvShowId = params['id'];
       movie?.getDataMovieDetail(this.movieId)?.subscribe(movie => {
         this.movieDetail = movie;
         this.initializeFromLocalStorage();
       })
+      if(this.tvShowId != undefined){
+        movie?.getDataTvShowsDetail(this.tvShowId)?.subscribe(tvShow => {
+          this.tvShowDetail = tvShow;
+          console.log(this.tvShowDetail)
+        })
+      }
     });
   }
 
