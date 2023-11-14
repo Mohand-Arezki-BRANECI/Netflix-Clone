@@ -11,6 +11,8 @@ export class MoviesService {
   apiKey:string;
   url1:string;
 
+  public isMovie!: boolean;
+
   private messageSubject: BehaviorSubject<Movie | undefined>;
   private messageObservable$: Observable<Movie | undefined>;
 

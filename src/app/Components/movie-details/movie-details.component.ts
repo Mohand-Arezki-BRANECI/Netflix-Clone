@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Movie, Movies} from "../../Model/movie";
+import {Component} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {Movies} from "../../Model/movie";
 import {MovieDetailService} from "../../Service/MovieDetail/movie-detail.service";
 import {faRankingStar, faSquareCheck, faStar, faTicket} from "@fortawesome/free-solid-svg-icons";
-import {Observable} from "rxjs";
 import {TvShows} from "../../Model/tvShow";
+import {MoviesService} from "../../Service/MovieList/movies.service";
 
 @Component({
   selector: 'app-movie-details',
@@ -14,8 +14,6 @@ import {TvShows} from "../../Model/tvShow";
 export class MovieDetailsComponent{
   movieId !: String ;
   movieDetail ?: Movies ;
-  movieDetail$ !: Observable<Movies> ;
-  movieTitle !:String;
   tvShowId : String = '';
   tvShowDetail? : TvShows;
 
@@ -28,17 +26,43 @@ export class MovieDetailsComponent{
   isMustSeeClass = '';
   isSeenClass = '';
   months = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec",]
-
-
-
+    /*
   constructor(private route: ActivatedRoute, private movie : MovieDetailService) {
-    this.movieDetail$ =  movie.getDataMovieDetail(this.movieId);
     this.route.params.subscribe(params => {
+      this.tvShowId= params['id'];
       this.movieId = params['id'];
-      movie?.getDataMovieDetail(this.movieId)?.subscribe(movie => {
-        this.movieDetail = movie;
-        this.initializeFromLocalStorage();
-      })
+      if(this.movieId != undefined){
+        movie?.getDataMovieDetail(this.movieId)?.subscribe(movie => {
+          this.movieDetail = movie;
+          console.log(this.movieDetail)
+        })
+      }
+      if(this.tvShowId != undefined){
+        movie?.getDataTvShowsDetail(this.tvShowId)?.subscribe(movie => {
+          this.tvShowDetail = movie;
+          console.log(this.tvShowDetail)
+        })
+      }''
+    });
+  }
+     */
+  constructor(private route: ActivatedRoute, private movie : MovieDetailService, public service: MoviesService) {
+    //this.movieDetail$ =  movie.getDataMovieDetail(this.movieId);
+    this.route.params.subscribe(params => {
+      this.tvShowId= params['id'];
+      this.movieId = params['id'];
+      if(this.movieId != undefined) {
+        movie?.getDataMovieDetail(this.movieId)?.subscribe(movie => {
+          this.movieDetail = movie;
+          this.initializeFromLocalStorage();
+        })
+      }
+      if(this.tvShowId != undefined){
+        movie?.getDataTvShowsDetail(this.tvShowId)?.subscribe(tvShow => {
+          this.tvShowDetail = tvShow;
+          console.log(this.tvShowDetail)
+        })
+      }
     });
   }
 

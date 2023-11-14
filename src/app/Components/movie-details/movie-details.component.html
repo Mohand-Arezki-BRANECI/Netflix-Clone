@@ -1,4 +1,4 @@
-<div class="movieDetailCard" *ngIf="movieDetail !== undefined ">
+<div class="movieDetailCard" *ngIf="movieDetail !== undefined && service.isMovie">
 
   <div class="movieHeader">
   <span id="movieTitle">{{movieDetail?.original_title}}</span>
@@ -50,7 +50,7 @@
 
 
 
-<div class="movieDetailCard" *ngIf="tvShowDetail !== undefined ">
+<div class="movieDetailCard" *ngIf="tvShowDetail !== undefined && !service.isMovie">
 
   <div class="movieHeader">
   <span id="TvShowTitle">{{movieDetail?.original_title}}</span>

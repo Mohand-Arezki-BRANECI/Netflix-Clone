@@ -1,4 +1,5 @@
-<div id="moviePageTitle">My Space</div>
+<div id="moviePageTitle" class="header">My Space</div>
+<button (click)="logout()">Logout</button>
 
 <div class="favoriteMovieShow" *ngIf="favorisFromLocalStorage != undefined">
   <app-movie-card *ngFor="let movie of favorisFromLocalStorage" [movie]=""></app-movie-card>
