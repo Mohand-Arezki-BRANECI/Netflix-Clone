@@ -12,6 +12,7 @@ export class MoviesComponent {
   receivedMovies: Movie | undefined;
   currentPage: number = 1;
   totalPages: number  = 0;
+
     @Input() displayPagination: boolean = true;
     constructor(private movie : MoviesService) {
     this.movie.getData(this.currentPage).subscribe(data => {
