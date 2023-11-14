@@ -22,9 +22,9 @@ export class MovieCardComponent implements OnInit{
   protected readonly faTicket = faTicket;
   protected readonly faSquareCheck = faSquareCheck;
 
-  isFavoriteClass = '';
-  isMustSeeClass = '';
-  isSeenClass = '';
+  isFavoriteClass = 'icon-not-favorite';
+  isMustSeeClass = 'icon-not-favorite';
+  isSeenClass = 'icon-not-favorite ';
   date : string = '';
   months = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
@@ -35,29 +35,27 @@ export class MovieCardComponent implements OnInit{
   }
 
   private initializeFromLocalStorage() {
-    // Vérifie si this.movie existe avant d'effectuer des opérations sur ses propriétés
-    if (this.movie) {
-      const movieId = this.movie.id;
-
-      const favorite = localStorage.getItem(String(movieId));
-      if (favorite === "favorite") {
+    if(this.movie != undefined){
+      const movieState = localStorage.getItem(String(this.movie.id)+"M");
+      if (movieState === "favorite") {
         this.isFavoriteClass = 'icon-favorite';
-      } else {
+      } else if (movieState === "mustSee") {
+        this.isMustSeeClass = 'icon-favorite';
+      } else if (movieState === "seen") {
+        this.isMustSeeClass = 'icon-favorite';
+      }else {
         this.isFavoriteClass = 'icon-not-favorite';
       }
-
-      const mustSee = localStorage.getItem(String(movieId));
-      if (mustSee === "mustSee") {
+    }else if(this.tvShow != undefined){
+      const tvShowState = localStorage.getItem(String(this.tvShow.id)+"TVS");
+      if (tvShowState === "favorite") {
+        this.isFavoriteClass = 'icon-favorite';
+      } else if (tvShowState === "mustSee") {
         this.isMustSeeClass = 'icon-favorite';
-      } else {
-        this.isMustSeeClass = 'icon-not-favorite';
-      }
-
-      const seen = localStorage.getItem(String(movieId));
-      if (seen === "seen") {
-        this.isSeenClass = 'icon-favorite';
-      } else {
-        this.isSeenClass = 'icon-not-favorite';
+      } else if (tvShowState === "seen") {
+        this.isMustSeeClass = 'icon-favorite';
+      }else {
+        this.isFavoriteClass = 'icon-not-favorite';
       }
     }
   }
@@ -68,9 +66,12 @@ export class MovieCardComponent implements OnInit{
         this.isFavoriteClass = 'icon-not-favorite fa-fade !important';
         setTimeout(() => {
           this.isFavoriteClass = "icon-not-favorite";
-          localStorage.removeItem(String(movieId));
         }, 1000);
-
+        if(this.movie == undefined){
+          localStorage.removeItem(String(movieId)+"TVS");
+        }else if(this.tvShow == undefined){
+          localStorage.removeItem(String(movieId)+"M");
+        }
       }
       if(this.isFavoriteClass == 'icon-not-favorite'){
         this.isFavoriteClass = 'icon-favorite fa-beat !important';
@@ -80,8 +81,12 @@ export class MovieCardComponent implements OnInit{
           this.isFavoriteClass = "icon-favorite";
           this.isSeenClass = "icon-not-favorite";
           this.isMustSeeClass = "icon-not-favorite";
-          localStorage.setItem(String(movieId),"favorite")
         }, 1000);
+        if(this.movie == undefined){
+          localStorage.setItem(String(movieId)+"TVS","favorite")
+        }else if(this.tvShow == undefined){
+          localStorage.setItem(String(movieId)+"M","favorite")
+        }
 
       }
     }
@@ -93,8 +98,12 @@ export class MovieCardComponent implements OnInit{
         this.isMustSeeClass = 'icon-not-favorite fa-shake !important'
         setTimeout(() => {
           this.isMustSeeClass = "icon-not-favorite";
-          localStorage.removeItem(String(movieId));
         }, 1000);
+        if(this.movie == undefined){
+          localStorage.removeItem(String(movieId)+"TVS");
+        }else if(this.tvShow == undefined){
+          localStorage.removeItem(String(movieId)+"M");
+        }
 
       }else {
         this.isMustSeeClass = 'icon-favorite fa-shake !important'
@@ -104,8 +113,13 @@ export class MovieCardComponent implements OnInit{
           this.isMustSeeClass = "icon-favorite";
           this.isFavoriteClass = "icon-not-favorite";
           this.isSeenClass = "icon-not-favorite";
-          localStorage.setItem(String(movieId),"mustSee")
         }, 1000);
+        if(this.movie == undefined){
+          localStorage.setItem(String(movieId)+"TVS","mustSee")
+        }else if(this.tvShow == undefined){
+          localStorage.setItem(String(movieId)+"M","mustSee")
+        }
+
       }
     }
   }
@@ -115,8 +129,12 @@ export class MovieCardComponent implements OnInit{
       this.isSeenClass = "icon-not-favorite fa-flip";
       setTimeout(() => {
         this.isSeenClass = "icon-not-favorite";
-        localStorage.removeItem(String(movieId));
       }, 1000);
+      if(this.movie == undefined){
+        localStorage.removeItem(String(movieId)+"TVS");
+      }else if(this.tvShow == undefined){
+        localStorage.removeItem(String(movieId)+"M");
+      }
     }else{
       this.isSeenClass = "icon-favorite fa-flip";
       this.isFavoriteClass = "icon-not-favorite";
@@ -125,8 +143,12 @@ export class MovieCardComponent implements OnInit{
         this.isSeenClass = "icon-favorite";
         this.isFavoriteClass = "icon-not-favorite";
         this.isMustSeeClass = "icon-not-favorite";
-        localStorage.setItem(String(movieId),"seen")
       }, 1000);
+      if(this.movie == undefined){
+        localStorage.setItem(String(movieId)+"TVS","seen")
+      }else if(this.tvShow == undefined){
+        localStorage.setItem(String(movieId)+"M","seen")
+      }
     }
   }
 

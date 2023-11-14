@@ -1,8 +1,16 @@
-import {Component} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Movies} from "../../Model/movie";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {Movie, Movies} from "../../Model/movie";
 import {MovieDetailService} from "../../Service/MovieDetail/movie-detail.service";
-import {faRankingStar, faSquareCheck, faStar, faTicket} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileLines,
+  faFireFlameCurved,
+  faRankingStar, faRightFromBracket,
+  faSquareCheck,
+  faStar,
+  faTicket
+} from "@fortawesome/free-solid-svg-icons";
+import {Observable} from "rxjs";
 import {TvShows} from "../../Model/tvShow";
 import {MoviesService} from "../../Service/MovieList/movies.service";
 
@@ -14,9 +22,15 @@ import {MoviesService} from "../../Service/MovieList/movies.service";
 export class MovieDetailsComponent{
   movieId !: String ;
   movieDetail ?: Movies ;
+  movieDetail$ !: Observable<Movies> ;
+  movieTitle !:String;
   tvShowId : String = '';
   tvShowDetail? : TvShows;
 
+
+  protected readonly faFileLines = faFileLines;
+  protected readonly faFireFlameCurved = faFireFlameCurved;
+  protected readonly faRightFromBracket = faRightFromBracket;
   protected readonly faStar = faStar;
   protected readonly faRankingStar = faRankingStar;
   protected readonly faTicket = faTicket;
@@ -26,37 +40,18 @@ export class MovieDetailsComponent{
   isMustSeeClass = '';
   isSeenClass = '';
   months = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec",]
-    /*
-  constructor(private route: ActivatedRoute, private movie : MovieDetailService) {
+
+
+
+  constructor(private route: ActivatedRoute, private movie : MovieDetailService, public service : MoviesService) {
+    this.movieDetail$ =  movie.getDataMovieDetail(this.movieId);
     this.route.params.subscribe(params => {
-      this.tvShowId= params['id'];
       this.movieId = params['id'];
-      if(this.movieId != undefined){
-        movie?.getDataMovieDetail(this.movieId)?.subscribe(movie => {
-          this.movieDetail = movie;
-          console.log(this.movieDetail)
-        })
-      }
-      if(this.tvShowId != undefined){
-        movie?.getDataTvShowsDetail(this.tvShowId)?.subscribe(movie => {
-          this.tvShowDetail = movie;
-          console.log(this.tvShowDetail)
-        })
-      }''
-    });
-  }
-     */
-  constructor(private route: ActivatedRoute, private movie : MovieDetailService, public service: MoviesService) {
-    //this.movieDetail$ =  movie.getDataMovieDetail(this.movieId);
-    this.route.params.subscribe(params => {
-      this.tvShowId= params['id'];
-      this.movieId = params['id'];
-      if(this.movieId != undefined) {
-        movie?.getDataMovieDetail(this.movieId)?.subscribe(movie => {
-          this.movieDetail = movie;
-          this.initializeFromLocalStorage();
-        })
-      }
+      this.tvShowId = params['id'];
+      movie?.getDataMovieDetail(this.movieId)?.subscribe(movie => {
+        this.movieDetail = movie;
+        this.initializeFromLocalStorage();
+      })
       if(this.tvShowId != undefined){
         movie?.getDataTvShowsDetail(this.tvShowId)?.subscribe(tvShow => {
           this.tvShowDetail = tvShow;
@@ -68,31 +63,17 @@ export class MovieDetailsComponent{
 
   private initializeFromLocalStorage() {
     // Vérifie si this.movie existe avant d'effectuer des opérations sur ses propriétés
-    if (this.movieDetail) {
-      const movieId = this.movieId;
-
-      const favorite = localStorage.getItem(String(movieId));
-
-      if (favorite === "favorite") {
+      const movieState = localStorage.getItem(String(this.movieId)+"M");
+      const tvShowState = localStorage.getItem(String(this.tvShowId)+"TVS");
+      if (movieState === "favorite" || tvShowState === "favorite") {
         this.isFavoriteClass = 'icon-favorite';
-      } else {
+      } else if (movieState === "mustSee" || tvShowState === "mustSee") {
+        this.isMustSeeClass = 'icon-favorite';
+      } else if (movieState === "seen" || tvShowState === "seen") {
+        this.isMustSeeClass = 'icon-favorite';
+      }else {
         this.isFavoriteClass = 'icon-not-favorite';
       }
-
-      const mustSee = localStorage.getItem(String(movieId));
-      if (mustSee === "mustSee") {
-        this.isMustSeeClass = 'icon-favorite';
-      } else {
-        this.isMustSeeClass = 'icon-not-favorite';
-      }
-
-      const seen = localStorage.getItem(String(movieId));
-      if (seen === "seen") {
-        this.isSeenClass = 'icon-favorite';
-      } else {
-        this.isSeenClass = 'icon-not-favorite';
-      }
-    }
   }
 
   stateFavorite(movieId: number | undefined){
@@ -101,19 +82,26 @@ export class MovieDetailsComponent{
         this.isFavoriteClass = 'icon-not-favorite fa-fade';
         setTimeout(() => {
           this.isFavoriteClass = "icon-not-favorite";
-          localStorage.removeItem(String(movieId));
         }, 1000);
-
+        if(this.movieDetail == undefined){
+          localStorage.removeItem(String(this.tvShowId)+"TVS");
+        }else if(this.tvShowDetail == undefined){
+          localStorage.removeItem(String(this.movieId)+"M");
+        }
       }
+
       if(this.isFavoriteClass == 'icon-not-favorite'){
         this.isFavoriteClass = 'icon-favorite fa-beat';
         this.isSeenClass = "icon-not-favorite";
         this.isMustSeeClass = "icon-not-favorite";
         setTimeout(() => {
           this.isFavoriteClass = "icon-favorite";
-          localStorage.setItem(String(movieId),"favorite")
         }, 1000);
-
+        if(this.movieDetail == undefined){
+          localStorage.setItem(String(this.tvShowId)+"TVS","favorite")
+        }else if(this.tvShowDetail == undefined){
+          localStorage.setItem(String(this.movieId)+"M","favorite")
+        }
       }
     }
   }
@@ -124,8 +112,12 @@ export class MovieDetailsComponent{
         this.isMustSeeClass = 'icon-not-favorite fa-shake'
         setTimeout(() => {
           this.isMustSeeClass = "icon-not-favorite";
-          localStorage.removeItem(String(movieId));
         }, 1000);
+        if(this.movieDetail == undefined){
+          localStorage.removeItem(String(this.tvShowId)+"TVS");
+        }else if(this.tvShowDetail == undefined){
+          localStorage.removeItem(String(this.movieId)+"M");
+        }
 
       }else {
         this.isMustSeeClass = 'icon-favorite fa-shake'
@@ -133,8 +125,12 @@ export class MovieDetailsComponent{
         this.isSeenClass = "icon-not-favorite";
         setTimeout(() => {
           this.isMustSeeClass = "icon-favorite";
-          localStorage.setItem(String(movieId),"mustSee")
         }, 1000);
+        if(this.movieDetail == undefined){
+          localStorage.setItem(String(this.tvShowId)+"TVS","mustSee")
+        }else if(this.tvShowDetail == undefined){
+          localStorage.setItem(String(this.movieId)+"M","mustSee")
+        }
       }
     }
   }
@@ -144,16 +140,24 @@ export class MovieDetailsComponent{
       this.isSeenClass = "icon-not-favorite fa-flip";
       setTimeout(() => {
         this.isSeenClass = "icon-not-favorite";
-        localStorage.removeItem(String(movieId));
       }, 1000);
+      if(this.movieDetail == undefined){
+        localStorage.removeItem(String(this.tvShowId)+"TVS");
+      }else if(this.tvShowDetail == undefined){
+        localStorage.removeItem(String(this.movieId)+"M");
+      }
     }else{
       this.isSeenClass = "icon-favorite fa-flip";
       this.isFavoriteClass = "icon-not-favorite";
       this.isMustSeeClass = "icon-not-favorite";
       setTimeout(() => {
         this.isSeenClass = "icon-favorite";
-        localStorage.setItem(String(movieId),"seen")
       }, 1000);
+      if(this.movieDetail == undefined){
+        localStorage.setItem(String(this.tvShowId)+"TVS","seen")
+      }else if(this.tvShowDetail == undefined){
+        localStorage.setItem(String(this.movieId)+"M","seen")
+      }
     }
   }
 
@@ -164,8 +168,4 @@ export class MovieDetailsComponent{
       return ymd.split("-")[2] + " " + this.months[parseInt(ymd.split("-")[1])] + " " + ymd.split("-")[0]
     }
   }
-
-
-
-
 }
