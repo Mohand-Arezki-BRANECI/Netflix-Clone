@@ -1,8 +1,8 @@
 
 <div class="movieCard" >
   <div class="movie" >
-    <div id="iconMovieState">
-      <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movie?.id)"></fa-icon>
+    <div class="iconMovieState">
+      <fa-icon data-toggle="tooltip" title="Favorite" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movie?.id)"></fa-icon>
       <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="addToMustSee(movie?.id)"></fa-icon>
       <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="addToSeen(movie?.id)"></fa-icon>
     </div>
@@ -24,8 +24,11 @@
 
 <div class="movieCard" *ngIf="tvShow">
 <div class="movie">
-<div><p>{{tvShow?.original_name}}</p></div>
-<fa-icon [icon]="faStar"[ngClass]="isFavoriteClass"(click)="addToFavorite(tvShow?.id)"></fa-icon>
+  <div class="iconMovieState">
+    <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(tvShow?.id)"></fa-icon>
+    <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="addToMustSee(tvShow?.id)"></fa-icon>
+    <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="addToSeen(tvShow?.id)"></fa-icon>
+  </div>
 <div>
   <a routerLink="/movie_details" (click)="navigateToTvShowDetail()"><img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt=""></a></div>
 </div>
@@ -35,7 +38,7 @@
 <div class="movieOtherInformations">
 Popularity:{{tvShow?.popularity}}
 <br>
-Releasedate:{{changeFormatDate(tvShow.first_air_date)}}
+Release date:{{changeFormatDate(tvShow.first_air_date)}}
 </div>
 </div>
 </div>

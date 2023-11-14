@@ -26,6 +26,10 @@ export class MovieDetailsComponent{
   tvShowId : String = '';
   tvShowDetail? : TvShows;
 
+
+  protected readonly faFileLines = faFileLines;
+  protected readonly faFireFlameCurved = faFireFlameCurved;
+  protected readonly faRightFromBracket = faRightFromBracket;
   protected readonly faStar = faStar;
   protected readonly faRankingStar = faRankingStar;
   protected readonly faTicket = faTicket;
@@ -51,31 +55,17 @@ export class MovieDetailsComponent{
 
   private initializeFromLocalStorage() {
     // Vérifie si this.movie existe avant d'effectuer des opérations sur ses propriétés
-    if (this.movieDetail) {
-      const movieId = this.movieId;
-
-      const favorite = localStorage.getItem(String(movieId));
-
-      if (favorite === "favorite") {
+      const movieState = localStorage.getItem(String(this.movieId)+"M");
+      const tvShowState = localStorage.getItem(String(this.tvShowId)+"TVS");
+      if (movieState === "favorite" || tvShowState === "favorite") {
         this.isFavoriteClass = 'icon-favorite';
-      } else {
+      } else if (movieState === "mustSee" || tvShowState === "mustSee") {
+        this.isMustSeeClass = 'icon-favorite';
+      } else if (movieState === "seen" || tvShowState === "seen") {
+        this.isMustSeeClass = 'icon-favorite';
+      }else {
         this.isFavoriteClass = 'icon-not-favorite';
       }
-
-      const mustSee = localStorage.getItem(String(movieId));
-      if (mustSee === "mustSee") {
-        this.isMustSeeClass = 'icon-favorite';
-      } else {
-        this.isMustSeeClass = 'icon-not-favorite';
-      }
-
-      const seen = localStorage.getItem(String(movieId));
-      if (seen === "seen") {
-        this.isSeenClass = 'icon-favorite';
-      } else {
-        this.isSeenClass = 'icon-not-favorite';
-      }
-    }
   }
 
   stateFavorite(movieId: number | undefined){
@@ -84,19 +74,26 @@ export class MovieDetailsComponent{
         this.isFavoriteClass = 'icon-not-favorite fa-fade';
         setTimeout(() => {
           this.isFavoriteClass = "icon-not-favorite";
-          localStorage.removeItem(String(movieId));
         }, 1000);
-
+        if(this.movieDetail == undefined){
+          localStorage.removeItem(String(this.tvShowId)+"TVS");
+        }else if(this.tvShowDetail == undefined){
+          localStorage.removeItem(String(this.movieId)+"M");
+        }
       }
+
       if(this.isFavoriteClass == 'icon-not-favorite'){
         this.isFavoriteClass = 'icon-favorite fa-beat';
         this.isSeenClass = "icon-not-favorite";
         this.isMustSeeClass = "icon-not-favorite";
         setTimeout(() => {
           this.isFavoriteClass = "icon-favorite";
-          localStorage.setItem(String(movieId),"favorite")
         }, 1000);
-
+        if(this.movieDetail == undefined){
+          localStorage.setItem(String(this.tvShowId)+"TVS","favorite")
+        }else if(this.tvShowDetail == undefined){
+          localStorage.setItem(String(this.movieId)+"M","favorite")
+        }
       }
     }
   }
@@ -107,8 +104,12 @@ export class MovieDetailsComponent{
         this.isMustSeeClass = 'icon-not-favorite fa-shake'
         setTimeout(() => {
           this.isMustSeeClass = "icon-not-favorite";
-          localStorage.removeItem(String(movieId));
         }, 1000);
+        if(this.movieDetail == undefined){
+          localStorage.removeItem(String(this.tvShowId)+"TVS");
+        }else if(this.tvShowDetail == undefined){
+          localStorage.removeItem(String(this.movieId)+"M");
+        }
 
       }else {
         this.isMustSeeClass = 'icon-favorite fa-shake'
@@ -116,8 +117,12 @@ export class MovieDetailsComponent{
         this.isSeenClass = "icon-not-favorite";
         setTimeout(() => {
           this.isMustSeeClass = "icon-favorite";
-          localStorage.setItem(String(movieId),"mustSee")
         }, 1000);
+        if(this.movieDetail == undefined){
+          localStorage.setItem(String(this.tvShowId)+"TVS","mustSee")
+        }else if(this.tvShowDetail == undefined){
+          localStorage.setItem(String(this.movieId)+"M","mustSee")
+        }
       }
     }
   }
@@ -127,16 +132,24 @@ export class MovieDetailsComponent{
       this.isSeenClass = "icon-not-favorite fa-flip";
       setTimeout(() => {
         this.isSeenClass = "icon-not-favorite";
-        localStorage.removeItem(String(movieId));
       }, 1000);
+      if(this.movieDetail == undefined){
+        localStorage.removeItem(String(this.tvShowId)+"TVS");
+      }else if(this.tvShowDetail == undefined){
+        localStorage.removeItem(String(this.movieId)+"M");
+      }
     }else{
       this.isSeenClass = "icon-favorite fa-flip";
       this.isFavoriteClass = "icon-not-favorite";
       this.isMustSeeClass = "icon-not-favorite";
       setTimeout(() => {
         this.isSeenClass = "icon-favorite";
-        localStorage.setItem(String(movieId),"seen")
       }, 1000);
+      if(this.movieDetail == undefined){
+        localStorage.setItem(String(this.tvShowId)+"TVS","seen")
+      }else if(this.tvShowDetail == undefined){
+        localStorage.setItem(String(this.movieId)+"M","seen")
+      }
     }
   }
 
@@ -147,9 +160,4 @@ export class MovieDetailsComponent{
       return ymd.split("-")[2] + " " + this.months[parseInt(ymd.split("-")[1])] + " " + ymd.split("-")[0]
     }
   }
-
-
-  protected readonly faFileLines = faFileLines;
-  protected readonly faFireFlameCurved = faFireFlameCurved;
-  protected readonly faRightFromBracket = faRightFromBracket;
 }
