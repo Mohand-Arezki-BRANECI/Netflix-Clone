@@ -4,6 +4,7 @@ import {faMagnifyingGlass, faSquareCheck, faStar, faTicket} from "@fortawesome/f
 import {Router} from "@angular/router";
 
 import {AppComponent} from "../../app.component";
+import {TvShow, TvShows} from "../../Model/tvShow";
 
 @Component({
   selector: 'app-movie-card',
@@ -11,9 +12,10 @@ import {AppComponent} from "../../app.component";
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent implements OnInit{
-    @Input() movie : Movies | undefined
-    @Input() tvShow : Movies | undefined
-    @Input() searchResult : Movies | undefined
+  @Input() movie : Movies | undefined
+  @Input() tvShow : TvShows | undefined
+  @Input() searchResult : Movies | undefined
+
 
   protected readonly faStar = faStar;
   protected readonly faTicket = faTicket;
@@ -137,6 +139,10 @@ export class MovieCardComponent implements OnInit{
 
   navigateToDetail() {
     this.router.navigate(['/movie_details', this.movie?.id]).then();
+  }
+
+  navigateToTvShowDetail(){
+    this.router.navigate(['/movie_details',this.tvShow?.id]).then();
   }
 
 }

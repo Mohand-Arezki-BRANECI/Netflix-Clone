@@ -4,6 +4,7 @@ import {Movie, Movies} from "../../Model/movie";
 import {MovieDetailService} from "../../Service/MovieDetail/movie-detail.service";
 import {faRankingStar, faSquareCheck, faStar, faTicket} from "@fortawesome/free-solid-svg-icons";
 import {Observable} from "rxjs";
+import {TvShows} from "../../Model/tvShow";
 
 @Component({
   selector: 'app-movie-details',
@@ -15,6 +16,8 @@ export class MovieDetailsComponent{
   movieDetail ?: Movies ;
   movieDetail$ !: Observable<Movies> ;
   movieTitle !:String;
+  tvShowId : String = '';
+  tvShowDetail? : TvShows;
 
   protected readonly faStar = faStar;
   protected readonly faRankingStar = faRankingStar;

@@ -22,17 +22,22 @@
 </div>
 
 
-<a routerLink="/movie_details" *ngIf="tvShow">
-  <div class="movie">
-    <div><p>{{tvShow.original_title}}</p></div>
-    <div> <img src="https://image.tmdb.org/t/p/w500/{{tvShow.poster_path}}" alt=""></div>
-  </div>
-  <p>
-    {{tvShow.original_title}}
-    <br>
-    Popularity : {{tvShow.popularity}}
-    <br>
-    Release date : {{tvShow.release_date}}
-  </p>
-</a>
+<div class="movieCard" *ngIf="tvShow">
+<div class="movie">
+<div><p>{{tvShow?.original_name}}</p></div>
+<fa-icon [icon]="faStar"[ngClass]="isFavoriteClass"(click)="addToFavorite(tvShow?.id)"></fa-icon>
+<div>
+  <a routerLink="/movie_details" (click)="navigateToTvShowDetail()"><img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt=""></a></div>
+</div>
+<div class="textMovie">
+<div class="movieOriginalTitle">{{tvShow?.original_name}}</div>
+<br>
+<div class="movieOtherInformations">
+Popularity:{{tvShow?.popularity}}
+<br>
+Releasedate:{{changeFormatDate(tvShow.first_air_date)}}
+</div>
+</div>
+</div>
+
 
