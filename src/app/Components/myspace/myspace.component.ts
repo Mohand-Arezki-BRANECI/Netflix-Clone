@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Movie} from "../../Model/movie";
-import {MoviesService} from "../../Service/MovieList/movies.service";
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-myspace',
@@ -11,6 +10,15 @@ export class MyspaceComponent implements OnInit{
   favorisFromLocalStorage: number[] = [];
   seenFromLocalStorage: number[] = [];
   mustSeeFromLocalStorage: number[] = [];
+
+  constructor(private router: Router) { }
+
+  logout() {
+    // Perform logout logic here, e.g., clear user session or token.
+
+    // Redirect to the login page (replace 'login' with your actual login route).
+    this.router.navigate(['/sign_in']);
+  }
 
 
 

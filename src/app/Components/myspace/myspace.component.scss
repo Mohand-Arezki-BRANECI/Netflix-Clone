@@ -1,0 +1,20 @@
+.header {
+  background-color: #111;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background-color: #e50914; /* Netflix red color */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #b70000; /* Slightly darker red on hover */
+}

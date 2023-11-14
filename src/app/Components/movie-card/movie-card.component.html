@@ -1,46 +1,49 @@
-
-<div class="movieCard" >
-  <div class="movie" >
+<!-- movie-card.component.html -->
+<div class="movieCard" *ngIf="movie || tvShow">
+  <div class="movie">
     <div class="iconMovieState">
-      <fa-icon data-toggle="tooltip" title="Favorite" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movie?.id)"></fa-icon>
-      <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="addToMustSee(movie?.id)"></fa-icon>
-      <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="addToSeen(movie?.id)"></fa-icon>
+      <fa-icon
+        data-toggle="tooltip"
+        title="Favoris"
+        [icon]="faStar"
+        [ngClass]="isFavoriteClass"
+        (click)="addToFavorite(movie?.id || tvShow?.id)"
+      ></fa-icon>
+      <fa-icon
+        data-toggle="tooltip"
+        title="MustSee"
+        [icon]="faTicket"
+        [ngClass]="isMustSeeClass"
+        (click)="addToMustSee(movie?.id || tvShow?.id)"
+      ></fa-icon>
+      <fa-icon
+        data-toggle="tooltip"
+        title="Seen"
+        [icon]="faSquareCheck"
+        [ngClass]="isSeenClass"
+        (click)="addToSeen(movie?.id || tvShow?.id)"
+      ></fa-icon>
+    </div>
+    <div class="moviePicture" (click)="navigateToDetail()" *ngIf="movie">
+      <a routerLink="/movie_details">
+        <img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" (error)="'https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}'" alt="" />
+      </a>
     </div>
 
-    <div class="moviePicture" (click)="navigateToDetail()">
-      <a routerLink="/movie_details"><img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" alt=""></a></div>
+    <div class="moviePicture" (click)="navigateToTvShowDetail()" *ngIf="tvShow">
+      <a routerLink="/tvshow_details">
+        <img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt="" />
+      </a>
+    </div>
   </div>
   <div class="textMovie">
-    <div class="movieOriginalTitle">{{movie?.original_title}}</div>
-    <br>
+    <div class="movieOriginalTitle">{{movie?.original_title || tvShow?.original_name}}</div>
+    <br />
     <div class="movieOtherInformations">
-      Popularity : {{movie?.popularity}}
-      <br>
-      Release date : {{changeFormatDate(movie?.release_date)}}
+      Popularity: {{movie?.popularity || tvShow?.popularity}}
+      <br />
+      Release date: {{changeFormatDate(movie?.release_date || tvShow?.first_air_date)}}
     </div>
   </div>
 </div>
-
-
-<div class="movieCard" *ngIf="tvShow">
-<div class="movie">
-  <div class="iconMovieState">
-    <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(tvShow?.id)"></fa-icon>
-    <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="addToMustSee(tvShow?.id)"></fa-icon>
-    <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="addToSeen(tvShow?.id)"></fa-icon>
-  </div>
-<div>
-  <a routerLink="/movie_details" (click)="navigateToTvShowDetail()"><img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt=""></a></div>
-</div>
-<div class="textMovie">
-<div class="movieOriginalTitle">{{tvShow?.original_name}}</div>
-<br>
-<div class="movieOtherInformations">
-Popularity:{{tvShow?.popularity}}
-<br>
-Release date:{{changeFormatDate(tvShow.first_air_date)}}
-</div>
-</div>
-</div>
-
 

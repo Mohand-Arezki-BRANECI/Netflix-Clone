@@ -1,10 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Movie, Movies} from "../../Model/movie";
-import {faMagnifyingGlass, faSquareCheck, faStar, faTicket} from "@fortawesome/free-solid-svg-icons";
+import {Movies} from "../../Model/movie";
+import {faSquareCheck, faStar, faTicket} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 
-import {AppComponent} from "../../app.component";
-import {TvShow, TvShows} from "../../Model/tvShow";
+
+import {TvShows} from "../../Model/tvShow";
+import {MoviesService} from "../../Service/MovieList/movies.service";
 
 @Component({
   selector: 'app-movie-card',
@@ -27,7 +28,7 @@ export class MovieCardComponent implements OnInit{
   date : string = '';
   months = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private service: MoviesService) {}
 
   ngOnInit() {
     this.initializeFromLocalStorage();
@@ -160,10 +161,12 @@ export class MovieCardComponent implements OnInit{
   }
 
   navigateToDetail() {
+    this.service.isMovie = true;
     this.router.navigate(['/movie_details', this.movie?.id]).then();
   }
 
   navigateToTvShowDetail(){
+    this.service.isMovie = false;
     this.router.navigate(['/movie_details',this.tvShow?.id]).then();
   }
 
