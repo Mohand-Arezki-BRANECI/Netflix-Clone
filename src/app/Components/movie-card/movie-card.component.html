@@ -1,9 +1,14 @@
-<div class="movieCard" *ngIf="movie">
-  <div class="movie">
-    <div><p>{{movie?.original_title}}</p></div>
-    <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movie?.id)"></fa-icon>
-    <div>
-      <a routerLink="/movie_details" (click)="navigateToDetail()"><img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" alt=""></a></div>
+
+<div class="movieCard" >
+  <div class="movie" >
+    <div id="iconMovieState">
+      <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(movie?.id)"></fa-icon>
+      <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="addToMustSee(movie?.id)"></fa-icon>
+      <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="addToSeen(movie?.id)"></fa-icon>
+    </div>
+
+    <div class="moviePicture" (click)="navigateToDetail()">
+      <a routerLink="/movie_details"><img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" alt=""></a></div>
   </div>
   <div class="textMovie">
     <div class="movieOriginalTitle">{{movie?.original_title}}</div>
@@ -15,24 +20,24 @@
     </div>
   </div>
 </div>
+
+
 <div class="movieCard" *ngIf="tvShow">
-  <div class="movie">
-    <div><p>{{tvShow?.original_name}}</p></div>
-    <fa-icon [icon]="faStar" [ngClass]="isFavoriteClass" (click)="addToFavorite(tvShow?.id)"></fa-icon>
-    <div>
-      <a routerLink="/movie_details" (click)="navigateToTvShowDetail()"><img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt=""></a></div>
-  </div>
-  <div class="textMovie">
-    <div class="movieOriginalTitle">{{tvShow?.original_name}}</div>
-    <br>
-    <div class="movieOtherInformations">
-      Popularity : {{tvShow?.popularity}}
-      <br>
-      Release date : {{changeFormatDate(tvShow.first_air_date)}}
-    </div>
-  </div>
+<div class="movie">
+<div><p>{{tvShow?.original_name}}</p></div>
+<fa-icon [icon]="faStar"[ngClass]="isFavoriteClass"(click)="addToFavorite(tvShow?.id)"></fa-icon>
+<div>
+  <a routerLink="/movie_details" (click)="navigateToTvShowDetail()"><img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt=""></a></div>
 </div>
-
-
+<div class="textMovie">
+<div class="movieOriginalTitle">{{tvShow?.original_name}}</div>
+<br>
+<div class="movieOtherInformations">
+Popularity:{{tvShow?.popularity}}
+<br>
+Releasedate:{{changeFormatDate(tvShow.first_air_date)}}
+</div>
+</div>
+</div>
 
 
