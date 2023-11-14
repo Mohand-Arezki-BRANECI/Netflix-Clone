@@ -14,24 +14,27 @@
 
     <div class="movieInfs">
 
+      <fa-icon [icon]="faFileLines" class="iconMovieInfo"></fa-icon>
       <span class="movieInfoTitle">Summary :</span>
       <div class="movieInfo">
         {{movieDetail?.overview}}
       </div>
 
+      <fa-icon [icon]="faFireFlameCurved" class="iconMovieInfo"></fa-icon>
       <span class="movieInfoTitle">Popularity :</span>
       <div class="movieInfo">
         {{movieDetail?.popularity}}
       </div>
 
+      <fa-icon [icon]="faRightFromBracket" class="iconMovieInfo"></fa-icon>
       <span class="movieInfoTitle">Release :</span>
       <div class="movieInfo">
         {{changeFormatDate(movieDetail?.release_date)}}
       </div>
 
+      <fa-icon [icon]="faRankingStar" class="iconMovieInfo"></fa-icon>
       <span class="movieInfoTitle">Vote :</span>
       <div class="movieInfo">
-        <fa-icon [icon]="faRankingStar" id=""></fa-icon>
 
         {{movieDetail?.vote_average}}/10
         on

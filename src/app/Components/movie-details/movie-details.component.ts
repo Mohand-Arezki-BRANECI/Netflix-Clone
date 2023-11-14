@@ -2,7 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Movie, Movies} from "../../Model/movie";
 import {MovieDetailService} from "../../Service/MovieDetail/movie-detail.service";
-import {faRankingStar, faSquareCheck, faStar, faTicket} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileLines,
+  faFireFlameCurved,
+  faRankingStar, faRightFromBracket,
+  faSquareCheck,
+  faStar,
+  faTicket
+} from "@fortawesome/free-solid-svg-icons";
 import {Observable} from "rxjs";
 import {TvShows} from "../../Model/tvShow";
 
@@ -142,6 +149,7 @@ export class MovieDetailsComponent{
   }
 
 
-
-
+  protected readonly faFileLines = faFileLines;
+  protected readonly faFireFlameCurved = faFireFlameCurved;
+  protected readonly faRightFromBracket = faRightFromBracket;
 }
