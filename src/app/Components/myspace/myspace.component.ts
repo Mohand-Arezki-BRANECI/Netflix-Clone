@@ -10,31 +10,24 @@ import {TvShows} from "../../Model/tvShow";
   styleUrls: ['./myspace.component.scss']
 })
 export class MyspaceComponent implements OnInit{
-  favoriteFromLocalStorage: String[] = [];
-  seenFromLocalStorage: String[] = [];
-  mustSeeFromLocalStorage: String[] = [];
-
-  favoriteMovie: Movies[] = [];
-  favoriteTvShows: TvShows[] = [];
-
-  mustSeeMovie: Movies[] = [];
-  mustSeeTvShows: TvShows[] = [];
-
-  seenMovie: Movies[] = [];
-  seenTvShows: TvShows[] = [];
-
-  thisMovie: Movies | undefined;
-  thisTvShow: TvShows | undefined;
+  protected favoriteFromLocalStorage: String[] = [];
+  protected seenFromLocalStorage: String[] = [];
+  protected mustSeeFromLocalStorage: String[] = [];
+  protected favoriteMovie: Movies[] = [];
+  protected favoriteTvShows: TvShows[] = [];
+  protected mustSeeMovie: Movies[] = [];
+  protected mustSeeTvShows: TvShows[] = [];
+  protected seenMovie: Movies[] = [];
+  protected seenTvShows: TvShows[] = [];
 
   constructor(private router: Router, private service:DetailsService) { }
 
-  logout():void {
-    this.router.navigate(['/sign_in']).then(r => true);
+  protected logout():void {
+    this.router.navigate(['/sign_in']).then();
   }
   ngOnInit():void {
     for (let i: number = 0; i < localStorage.length; i++) {
       let key:string | null = localStorage.key(i);
-
       if(key != null) {
         if (localStorage.getItem(key) == "favorite") {
           this.favoriteFromLocalStorage.push(key);
@@ -46,7 +39,7 @@ export class MyspaceComponent implements OnInit{
       }
     }
     for (let f: number= 0; f < this.favoriteFromLocalStorage.length; f++){
-      let keyFav = this.favoriteFromLocalStorage[f];
+      let keyFav : String = this.favoriteFromLocalStorage[f];
       if(keyFav != null) {
         if(keyFav.split('M')[0] != keyFav){
           this.service.getDataMovieDetail(keyFav.split('M')[0])
@@ -78,12 +71,8 @@ export class MyspaceComponent implements OnInit{
         }
       }
     }
-
     for (let s: number=0; s < this.seenFromLocalStorage.length; s++){
-      console.log(this.seenFromLocalStorage)
-
       let keyS :String = this.seenFromLocalStorage[s];
-      console.log(keyS)
       if(keyS != null) {
         if(keyS.split('M')[0] != keyS){
           this.service.getDataMovieDetail(keyS.split('M')[0])
@@ -99,30 +88,4 @@ export class MyspaceComponent implements OnInit{
       }
     }
   }
-
-  protected getMovieOf(id:String):Movies | undefined{
-    if((id=id.split('M')[0]) == id){
-      this.service.getDataMovieDetail(id)
-        .subscribe(movie => {
-          this.thisMovie = movie;
-        });
-    }
-    if(this.thisMovie)
-      return this.thisMovie;
-    return undefined;
-  }
-
-  protected getTvShowOf(id:String):TvShows | undefined{
-    if((id=id.split('TVS')[0]) == id){
-      this.service.getDataTvShowsDetail(id)
-        .subscribe(tvShow => {
-          this.thisTvShow = tvShow;
-        });
-    }
-    if(this.thisTvShow)
-      return this.thisTvShow;
-    return undefined;
-  }
-
-
 }

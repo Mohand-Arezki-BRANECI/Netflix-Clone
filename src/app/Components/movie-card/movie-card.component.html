@@ -24,11 +24,11 @@
       ></fa-icon>
     </div>
     <div class="moviePicture" (click)="navigateToDetail()" *ngIf="movie">
-      <img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" onerror="this.classList.add('error-image'); this.src='../../../assets/error.png'" alt="" />
+      <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onerror="this.classList.add('error-image'); this.src='../../../assets/error.png'" alt="" />
     </div>
 
     <div class="moviePicture" (click)="navigateToTvShowDetail()" *ngIf="tvShow">
-      <img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt="" />
+      <img src="https://image.tmdb.org/t/p/w500/{{tvShow.poster_path}}" alt="" />
     </div>
   </div>
   <div class="textMovie">

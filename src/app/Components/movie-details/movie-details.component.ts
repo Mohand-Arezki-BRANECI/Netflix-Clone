@@ -20,12 +20,10 @@ import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
   styleUrls: ['./movie-details.component.scss'],
 })
 export class MovieDetailsComponent{
-  movieId !: String ;
-  movieDetail ?: Movies ;
-  tvShowId : String = '';
-  tvShowDetail? : TvShows;
-
-
+  protected movieId !: String ;
+  protected movieDetail ?: Movies ;
+  protected tvShowId : String = '';
+  protected tvShowDetail? : TvShows;
   protected readonly faFileLines : IconDefinition = faFileLines;
   protected readonly faFireFlameCurved: IconDefinition = faFireFlameCurved;
   protected readonly faRightFromBracket: IconDefinition = faRightFromBracket;
@@ -34,10 +32,10 @@ export class MovieDetailsComponent{
   protected readonly faTicket: IconDefinition = faTicket;
   protected readonly faSquareCheck: IconDefinition = faSquareCheck;
 
-  isFavoriteClass: string = 'icon-not-favorite';
-  isMustSeeClass: string = 'icon-not-favorite';
-  isSeenClass: string = 'icon-not-favorite';
-  months: string[] = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec",]
+  protected isFavoriteClass: string = 'icon-not-favorite';
+  protected isMustSeeClass: string = 'icon-not-favorite';
+  protected isSeenClass: string = 'icon-not-favorite';
+  private months: string[] = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec",]
 
   constructor(private route: ActivatedRoute, private movie : DetailsService, public service : ListService) {
     this.route.params.subscribe(params => {
@@ -51,7 +49,6 @@ export class MovieDetailsComponent{
       if(this.tvShowId != undefined){
         movie?.getDataTvShowsDetail(this.tvShowId)?.subscribe(tvShow => {
           this.tvShowDetail = tvShow;
-          console.log(this.tvShowDetail)
         })
       }
     });
@@ -71,7 +68,7 @@ export class MovieDetailsComponent{
       }
   }
 
-  stateFavorite(movieId: number | undefined) : void{
+  protected stateFavorite(movieId: number | undefined) : void{
     if(movieId != undefined){
       if(this.isFavoriteClass == 'icon-favorite'){
         this.isFavoriteClass = 'icon-not-favorite fa-fade';
@@ -101,7 +98,7 @@ export class MovieDetailsComponent{
     }
   }
 
-  stateMustSee(movieId: number | undefined) : void{
+  protected stateMustSee(movieId: number | undefined) : void{
     if(movieId != undefined){
       if(this.isMustSeeClass == 'icon-favorite'){
         this.isMustSeeClass = 'icon-not-favorite fa-shake'
@@ -130,7 +127,7 @@ export class MovieDetailsComponent{
     }
   }
 
-  stateSeen(movieId: number | undefined) : void{
+  protected stateSeen() : void{
     if(this.isSeenClass == 'icon-favorite'){
       this.isSeenClass = "icon-not-favorite fa-flip";
       setTimeout(() => {
@@ -156,7 +153,7 @@ export class MovieDetailsComponent{
     }
   }
 
-  changeFormatDate(ymd: string | undefined):String{
+  protected changeFormatDate(ymd: string | undefined):String{
     if(ymd == undefined){
       return "";
     }else{

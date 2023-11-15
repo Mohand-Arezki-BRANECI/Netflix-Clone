@@ -4,7 +4,6 @@ export interface Movie {
   total_pages: number;
   total_results: number;
 }
-
 export interface Movies {
   adult: boolean;
   backdrop_path: string;

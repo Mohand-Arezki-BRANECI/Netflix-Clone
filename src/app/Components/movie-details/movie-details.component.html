@@ -4,7 +4,7 @@
     <span *ngIf="!service.isMovie" id="tvShowTitle">{{tvShowDetail?.original_name}}</span>
     <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="stateFavorite(service.isMovie ? movieDetail?.id : tvShowDetail?.id)"></fa-icon>
     <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="stateMustSee(service.isMovie ? movieDetail?.id : tvShowDetail?.id)"></fa-icon>
-    <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="stateSeen(service.isMovie ? movieDetail?.id : tvShowDetail?.id)"></fa-icon>
+    <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="stateSeen()"></fa-icon>
   </div>
 
   <div class="movieContent">

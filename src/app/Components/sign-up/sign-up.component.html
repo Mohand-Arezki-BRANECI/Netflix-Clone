@@ -3,7 +3,6 @@
   <div class="signup text-center">
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
       <label>Sign up</label>
-
       <input type="text" name="userName" placeholder="User name" formControlName="userName">
       <br>
         <span class="text-danger" *ngIf="userNameControl?.invalid && userNameControl?.touched">Name is required</span>
@@ -16,7 +15,6 @@
       <br>
         <span class="text-danger" *ngIf="userPasswordControl?.invalid && userPasswordControl?.touched">Password is required</span>
       <br>
-
       <button type="submit" [disabled]="!signUpForm.valid">Sign up</button>
     </form>
     <a [routerLink]="['/sign_in']">Already got an account, Sign In!</a>
