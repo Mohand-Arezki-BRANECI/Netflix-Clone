@@ -27,7 +27,7 @@ export class SearchService {
     this.apiKey = "5a26726d5a44298c7d75f5cb0dec5252";
     this.searchUrl = "https://api.themoviedb.org/3/search/multi?api_key=5a26726d5a44298c7d75f5cb0dec5252";
   }
-  getDataFromSearch(searchQuery : string){
+  getDataFromSearch(searchQuery : string) : Observable<Movie>{
     let url : string = this.searchUrl + `&query=${searchQuery}&page=1&include_adult=false`;
     return this.httpClient.get<Movie>(url);
   }
