@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {MovieDetailService} from "../../Service/MovieDetail/movie-detail.service";
+import {DetailsService} from "../../Service/DetailsMovieTvShow/details.service";
 import {Movies} from "../../Model/movie";
-import {TvShow, TvShows} from "../../Model/tvShow";
+import {TvShows} from "../../Model/tvShow";
 
 @Component({
   selector: 'app-myspace',
@@ -26,12 +26,12 @@ export class MyspaceComponent implements OnInit{
   thisMovie: Movies | undefined;
   thisTvShow: TvShows | undefined;
 
-  constructor(private router: Router, private service:MovieDetailService) { }
+  constructor(private router: Router, private service:DetailsService) { }
 
-  logout() {
+  logout():void {
     this.router.navigate(['/sign_in']).then(r => true);
   }
-  ngOnInit() {
+  ngOnInit():void {
     for (let i = 0; i < localStorage.length; i++) {
       let key:string | null = localStorage.key(i);
 

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {MoviesService} from "../../Service/MovieList/movies.service";
+import {ListService} from "../../Service/ListMoviesTvShows/list.service";
 import {TvShow} from "../../Model/tvShow";
 
 @Component({
@@ -12,7 +12,7 @@ tvShows : TvShow | undefined;
   currentPage: number = 1;
   totalPages: number  = 0;
 @Input() displayPagination: boolean = true;
-  constructor(private movie : MoviesService) {
+  constructor(private movie : ListService) {
     this.movie.getTvShows(this.currentPage).subscribe(data => {
       console.warn(data);
       console.log("The fetched data : ", data)

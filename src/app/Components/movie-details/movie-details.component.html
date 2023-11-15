@@ -1,104 +1,37 @@
-<div class="movieDetailCard" *ngIf="movieDetail !== undefined && service.isMovie">
-
+<div class="movieDetailCard" *ngIf="(movieDetail || tvShowDetail) && (service.isMovie || !service.isMovie)">
   <div class="movieHeader">
-  <span id="movieTitle">{{movieDetail?.original_title}}</span>
-  <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="stateFavorite(movieDetail?.id)"></fa-icon>
-  <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="stateMustSee(movieDetail?.id)"></fa-icon>
-  <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="stateSeen(movieDetail?.id)"></fa-icon>
-</div>
-
-
+    <span *ngIf="service.isMovie" id="movieTitle">{{movieDetail?.original_title}}</span>
+    <span *ngIf="!service.isMovie" id="tvShowTitle">{{tvShowDetail?.original_name}}</span>
+    <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="stateFavorite(service.isMovie ? movieDetail?.id : tvShowDetail?.id)"></fa-icon>
+    <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="stateMustSee(service.isMovie ? movieDetail?.id : tvShowDetail?.id)"></fa-icon>
+    <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="stateSeen(service.isMovie ? movieDetail?.id : tvShowDetail?.id)"></fa-icon>
+  </div>
   <div class="movieContent">
-
-    <img class="moviePicture" src="https://image.tmdb.org/t/p/w500/{{movieDetail?.poster_path}}" alt="" >
-
+    <img class="moviePicture" src="https://image.tmdb.org/t/p/w500/{{service.isMovie ? movieDetail?.poster_path : tvShowDetail?.poster_path}}" alt="">
     <div class="movieInfs">
-
       <fa-icon [icon]="faFileLines" class="iconMovieInfo"></fa-icon>
       <span class="movieInfoTitle">Summary :</span>
       <div class="movieInfo">
-        {{movieDetail?.overview}}
+        {{service.isMovie ? movieDetail?.overview : tvShowDetail?.overview}}
       </div>
-
       <fa-icon [icon]="faFireFlameCurved" class="iconMovieInfo"></fa-icon>
       <span class="movieInfoTitle">Popularity :</span>
       <div class="movieInfo">
-        {{movieDetail?.popularity}}
+        {{service.isMovie ? movieDetail?.popularity : tvShowDetail?.popularity}}
       </div>
 
       <fa-icon [icon]="faRightFromBracket" class="iconMovieInfo"></fa-icon>
       <span class="movieInfoTitle">Release :</span>
       <div class="movieInfo">
-        {{changeFormatDate(movieDetail?.release_date)}}
+        {{service.isMovie ? changeFormatDate(movieDetail?.release_date) : changeFormatDate(tvShowDetail?.first_air_date)}}
       </div>
 
       <fa-icon [icon]="faRankingStar" class="iconMovieInfo"></fa-icon>
       <span class="movieInfoTitle">Vote :</span>
       <div class="movieInfo">
-
-        {{movieDetail?.vote_average}}/10
-        on
-        {{movieDetail?.vote_count}}
-        views.
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-
-
-<div class="movieDetailCard" *ngIf="tvShowDetail !== undefined && !service.isMovie">
-
-  <div class="movieHeader">
-  <span id="tvShowTitle">{{tvShowDetail?.original_name}}</span>
-  <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="stateFavorite(movieDetail?.id)"></fa-icon>
-  <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="stateMustSee(movieDetail?.id)"></fa-icon>
-  <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="stateSeen(movieDetail?.id)"></fa-icon>
-</div>
-
-
-  <div class="movieContent">
-
-    <img class="moviePicture" src="https://image.tmdb.org/t/p/w500/{{tvShowDetail?.poster_path}}" alt="" >
-
-    <div class="movieInfs">
-
-      <span class="movieInfoTitle">Summary :</span>
-      <div class="movieInfo">
-        {{tvShowDetail?.overview}}
-      </div>
-
-      <span class="movieInfoTitle">Popularity :</span>
-      <div class="movieInfo">
-        {{tvShowDetail?.popularity}}
-      </div>
-
-      <span class="movieInfoTitle">Release :</span>
-      <div class="movieInfo">
-        {{changeFormatDate(tvShowDetail?.first_air_date)}}
-      </div>
-
-      <span class="movieInfoTitle">Vote :</span>
-      <div class="movieInfo">
         <fa-icon [icon]="faRankingStar"></fa-icon>
-
-        {{tvShowDetail?.vote_average}}/10
-        on
-        {{tvShowDetail?.vote_count}}
-        views.
-
+        {{service.isMovie ? movieDetail?.vote_average : tvShowDetail?.vote_average}}/10 on {{service.isMovie ? movieDetail?.vote_count : tvShowDetail?.vote_count}} views.
       </div>
-
     </div>
-
   </div>
-
 </div>
-
-
