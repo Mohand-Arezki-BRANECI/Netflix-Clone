@@ -62,7 +62,7 @@ export class MovieDetailsComponent{
       } else if (movieState === "mustSee" || tvShowState === "mustSee") {
         this.isMustSeeClass = 'icon-favorite';
       } else if (movieState === "seen" || tvShowState === "seen") {
-        this.isMustSeeClass = 'icon-favorite';
+        this.isSeenClass = 'icon-favorite';
       }else {
         this.isFavoriteClass = 'icon-not-favorite';
       }
@@ -71,10 +71,7 @@ export class MovieDetailsComponent{
   protected stateFavorite(movieId: number | undefined) : void{
     if(movieId != undefined){
       if(this.isFavoriteClass == 'icon-favorite'){
-        this.isFavoriteClass = 'icon-not-favorite fa-fade';
-        setTimeout(() => {
-          this.isFavoriteClass = "icon-not-favorite";
-        }, 1000);
+        this.isFavoriteClass = 'icon-not-favorite';
         if(this.movieDetail == undefined){
           localStorage.removeItem(String(this.tvShowId)+"TVS");
         }else if(this.tvShowDetail == undefined){
@@ -83,12 +80,9 @@ export class MovieDetailsComponent{
       }
 
       if(this.isFavoriteClass == 'icon-not-favorite'){
-        this.isFavoriteClass = 'icon-favorite fa-beat';
+        this.isFavoriteClass = 'icon-favorite';
         this.isSeenClass = "icon-not-favorite";
         this.isMustSeeClass = "icon-not-favorite";
-        setTimeout(() => {
-          this.isFavoriteClass = "icon-favorite";
-        }, 1000);
         if(this.movieDetail == undefined){
           localStorage.setItem(String(this.tvShowId)+"TVS","favorite")
         }else if(this.tvShowDetail == undefined){
@@ -101,10 +95,7 @@ export class MovieDetailsComponent{
   protected stateMustSee(movieId: number | undefined) : void{
     if(movieId != undefined){
       if(this.isMustSeeClass == 'icon-favorite'){
-        this.isMustSeeClass = 'icon-not-favorite fa-shake'
-        setTimeout(() => {
-          this.isMustSeeClass = "icon-not-favorite";
-        }, 1000);
+        this.isMustSeeClass = 'icon-not-favorite'
         if(this.movieDetail == undefined){
           localStorage.removeItem(String(this.tvShowId)+"TVS");
         }else if(this.tvShowDetail == undefined){
@@ -112,12 +103,9 @@ export class MovieDetailsComponent{
         }
 
       }else {
-        this.isMustSeeClass = 'icon-favorite fa-shake'
+        this.isMustSeeClass = 'icon-favorite'
         this.isFavoriteClass = "icon-not-favorite";
         this.isSeenClass = "icon-not-favorite";
-        setTimeout(() => {
-          this.isMustSeeClass = "icon-favorite";
-        }, 1000);
         if(this.movieDetail == undefined){
           localStorage.setItem(String(this.tvShowId)+"TVS","mustSee")
         }else if(this.tvShowDetail == undefined){
@@ -129,22 +117,16 @@ export class MovieDetailsComponent{
 
   protected stateSeen() : void{
     if(this.isSeenClass == 'icon-favorite'){
-      this.isSeenClass = "icon-not-favorite fa-flip";
-      setTimeout(() => {
-        this.isSeenClass = "icon-not-favorite";
-      }, 1000);
+      this.isSeenClass = "icon-not-favorite";
       if(this.movieDetail == undefined){
         localStorage.removeItem(String(this.tvShowId)+"TVS");
       }else if(this.tvShowDetail == undefined){
         localStorage.removeItem(String(this.movieId)+"M");
       }
     }else{
-      this.isSeenClass = "icon-favorite fa-flip";
+      this.isSeenClass = "icon-favorite";
       this.isFavoriteClass = "icon-not-favorite";
       this.isMustSeeClass = "icon-not-favorite";
-      setTimeout(() : void => {
-        this.isSeenClass = "icon-favorite";
-      }, 1000);
       if(this.movieDetail == undefined){
         localStorage.setItem(String(this.tvShowId)+"TVS","seen")
       }else if(this.tvShowDetail == undefined){
