@@ -1,27 +1,18 @@
 import {Component} from '@angular/core';
-import {
-  Validators, FormGroup, FormBuilder,
-} from '@angular/forms';
-
-import {Router, RouterLink} from "@angular/router";
+import {Validators, FormGroup, FormBuilder} from '@angular/forms';
+import {Router} from "@angular/router";
 import {AppComponent} from "../../app.component";
 import {User} from "../../Model/user";
-
-
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
-  //standalone: true,
-  //imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf, MatCheckboxModule, MatAutocompleteModule, RouterLink],
 })
 export class SignUpComponent{
   protected signUpForm: FormGroup;
   private signedUpUsers : User[] = [];
-
   constructor(private appComponent: AppComponent, private fb: FormBuilder, private router: Router) {
     this.appComponent.showNavbar = false;
-
     this.signUpForm = this.fb.group({
       userName: ['', [Validators.required]],
       userEmail: ['', [Validators.required, Validators.email]],
@@ -37,13 +28,12 @@ export class SignUpComponent{
   protected get userPasswordControl() {
     return this.signUpForm.get('userPassword');
   }
-
   private setSignUpFormData(signUpFormData: User):void {
     let user: User = new User(signUpFormData.userName, signUpFormData.userEmail, signUpFormData.userPassword )
     this.signedUpUsers.push(user);
     console.log(this.signedUpUsers)
   }
-  private storeSignedUpUserInLocalStorage(signed_up_users : Array<User>){
+  private storeSignedUpUserInLocalStorage(signed_up_users : Array<User>):void{
     localStorage.setItem('signedUpUsers', JSON.stringify(signed_up_users))
 
   }

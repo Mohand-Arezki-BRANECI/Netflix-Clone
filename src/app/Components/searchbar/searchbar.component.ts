@@ -9,13 +9,11 @@ import {SearchService} from "../../Service/Search/search.service";
   styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent {
-
  constructor(private service : SearchService, private router : Router) {
  }
-  searchRes : Movie | undefined
-  searchQuery: string ="";
-  onSubmit(): void {
-    console.log(this.searchQuery);
+  private searchRes : Movie | undefined
+  protected searchQuery: string ="";
+  protected onSubmit(): void {
     if (this.searchQuery != "") {
       this.service.getDataFromSearch(this.searchQuery).subscribe(data => {
         this.searchRes = data;

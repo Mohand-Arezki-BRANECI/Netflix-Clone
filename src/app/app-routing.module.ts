@@ -9,8 +9,6 @@ import {MovieDetailsComponent} from "./Components/movie-details/movie-details.co
 import {SearchResultsComponent} from "./Components/search-results/search-results.component";
 import {MyspaceComponent} from "./Components/myspace/myspace.component";
 import {Error404Component} from "./Components/error404/error404.component";
-
-
 const routes: Routes = [
   { path: '', redirectTo:"/sign_in", pathMatch:"full"},
   { path: 'homepage', component: HomepageComponent },
