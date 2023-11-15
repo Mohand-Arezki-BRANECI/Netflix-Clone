@@ -6,6 +6,7 @@
     <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="stateMustSee(service.isMovie ? movieDetail?.id : tvShowDetail?.id)"></fa-icon>
     <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="stateSeen(service.isMovie ? movieDetail?.id : tvShowDetail?.id)"></fa-icon>
   </div>
+
   <div class="movieContent">
     <img class="moviePicture" src="https://image.tmdb.org/t/p/w500/{{service.isMovie ? movieDetail?.poster_path : tvShowDetail?.poster_path}}" alt="">
     <div class="movieInfs">
@@ -14,6 +15,7 @@
       <div class="movieInfo">
         {{service.isMovie ? movieDetail?.overview : tvShowDetail?.overview}}
       </div>
+
       <fa-icon [icon]="faFireFlameCurved" class="iconMovieInfo"></fa-icon>
       <span class="movieInfoTitle">Popularity :</span>
       <div class="movieInfo">
