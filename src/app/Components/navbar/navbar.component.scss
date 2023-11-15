@@ -1,3 +1,12 @@
+#netflix-clone-navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  height: 11vh;
+  background-color: black !important;
+  border-bottom: solid white 1px;
+}
 #search{
   position: absolute;
   right: 0;
@@ -5,28 +14,6 @@
   margin-top: 3.5vh;
   margin-right: 2vw;
 }
-
-#search .form-inline{
-  display: flex;
-}
-
-#search .form-inline .form-control{
-  margin-right: 1vw;
-}
-
-#search .form-inline .btn{
-  background-color: white;
-  border-color: green;
-  color: green;
-}
-
-#netflix-clone-navbar{
-  height: 11vh;
-  background-color: black !important;
-  border-bottom: solid white 1px;
-}
-
-
 .nav-link{
   margin-left: 3vw;
   font-size: 1.4vw;

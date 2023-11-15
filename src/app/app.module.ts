@@ -20,6 +20,7 @@ import { SearchbarComponent } from './Components/searchbar/searchbar.component';
 import { SearchResultsComponent } from './Components/search-results/search-results.component';
 import {PaginationComponent} from "./Components/pagination/pagination.component";
 import { MyspaceComponent } from './Components/myspace/myspace.component';
+import { Error404Component } from './Components/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MyspaceComponent } from './Components/myspace/myspace.component';
     SearchResultsComponent,
     PaginationComponent,
     MyspaceComponent,
+    Error404Component,
   ],
     imports: [
         BrowserModule,
