@@ -1,7 +1,24 @@
-<div class="movies" *ngIf="searchResults !== undefined">
-  <ng-container *ngIf="searchResults && searchResults.results.length > 0; else noMovies">
-    <app-movie-card *ngFor="let movie of searchResults.results" [movie]="movie"></app-movie-card>
+<div class="movies">
+  <ng-container *ngIf="searchResultsMovies || searchResultsTvShows; else noMovies">
+
+
+  <div *ngIf="searchResultsMovies !== undefined && searchResultsMovies.length != 0">
+    <span class="titleSearch">MOVIES</span>
+    <div class="flex">
+    <app-movie-card *ngFor="let movie of searchResultsMovies" [movie]="movie"></app-movie-card>
+    </div>
+    </div>
+    <div *ngIf="searchResultsTvShows !== undefined && searchResultsTvShows.length != 0">
+      <span class="titleSearch">TV SHOW</span>
+      <div class="flex">
+      <app-movie-card *ngFor="let tvShow of searchResultsTvShows" [tvShow]="tvShow"></app-movie-card>
+      </div>
+    </div>
+
+
+
   </ng-container>
+
   <ng-template #noMovies>
     <h1 class="no-available-movies">No movies available.</h1>
   </ng-template>

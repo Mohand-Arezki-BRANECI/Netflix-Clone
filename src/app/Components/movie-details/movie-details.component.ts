@@ -46,14 +46,14 @@ export class MovieDetailsComponent{
       if(this.movieId != undefined){
       movie?.getDataMovieDetail(this.movieId)?.subscribe(movie => {
         this.movieDetail = movie;
-        this.initializeFromLocalStorage();
       })}
       if(this.tvShowId != undefined){
         movie?.getDataTvShowsDetail(this.tvShowId)?.subscribe(tvShow => {
           this.tvShowDetail = tvShow;
-          console.log(this.tvShowDetail)
+
         })
       }
+      this.initializeFromLocalStorage();
     });
   }
 
