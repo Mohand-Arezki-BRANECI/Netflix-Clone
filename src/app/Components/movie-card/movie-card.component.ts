@@ -21,14 +21,13 @@ export class MovieCardComponent implements OnInit{
   protected readonly faTicket : IconDefinition = faTicket;
   protected readonly faSquareCheck : IconDefinition = faSquareCheck;
 
-  isFavoriteClass : string = 'icon-not-favorite';
-  isMustSeeClass :string = 'icon-not-favorite';
-  isSeenClass : string = 'icon-not-favorite ';
-  date : string = '';
-  months: string [] = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+  protected isFavoriteClass : string = 'icon-not-favorite';
+  protected isMustSeeClass :string = 'icon-not-favorite';
+  protected isSeenClass : string = 'icon-not-favorite ';
+  protected date : string = '';
+  private months: string [] = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
   constructor(private router: Router, private service: ListService) {}
-
   ngOnInit():void {
     this.initializeFromLocalStorage();
   }
@@ -58,7 +57,7 @@ export class MovieCardComponent implements OnInit{
     }
   }
 
-  addToFavorite(movieId: number | undefined): void{
+  protected addToFavorite(movieId: number | undefined): void{
     if(movieId != undefined){
       if(this.isFavoriteClass == 'icon-favorite'){
         this.isFavoriteClass = 'icon-not-favorite fa-fade !important';
@@ -90,7 +89,7 @@ export class MovieCardComponent implements OnInit{
     }
   }
 
-  addToMustSee(movieId: number | undefined) : void{
+  protected addToMustSee(movieId: number | undefined) : void{
     if(movieId != undefined){
       if(this.isMustSeeClass == 'icon-favorite'){
         this.isMustSeeClass = 'icon-not-favorite fa-shake !important'
@@ -121,7 +120,7 @@ export class MovieCardComponent implements OnInit{
       }
     }
   }
-  addToSeen(movieId: number | undefined): void{
+  protected addToSeen(movieId: number | undefined): void{
     if(this.isSeenClass == 'icon-favorite'){
       this.isSeenClass = "icon-not-favorite fa-flip";
       setTimeout(():void => {
@@ -148,18 +147,18 @@ export class MovieCardComponent implements OnInit{
       }
     }
   }
-  changeFormatDate(ymd: string | undefined):String{
+  protected changeFormatDate(ymd: string | undefined):String{
     if(ymd == undefined || ymd == ""){
       return "No Date Available";
     }else{
       return ymd.split("-")[2] + " " + this.months[parseInt(ymd.split("-")[1])] + " " + ymd.split("-")[0]
     }
   }
-  navigateToDetail(): void {
+  protected navigateToDetail(): void {
     this.service.isMovie = true;
     this.router.navigate(['/movie_details', this.movie?.id]).then();
   }
-  navigateToTvShowDetail(): void{
+  protected navigateToTvShowDetail(): void{
     this.service.isMovie = false;
     this.router.navigate(['/movie_details',this.tvShow?.id]).then();
   }

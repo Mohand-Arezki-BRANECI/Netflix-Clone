@@ -1,9 +1,15 @@
 <div id="moviePageTitle">MOVIES</div>
+
 <div class="movies" *ngIf="movies != undefined">
     <app-movie-card *ngFor="let movie of movies?.results" [movie]="movie"></app-movie-card>
 </div>
+
+<div class="movies" *ngIf="movies == undefined">
+    <h1 class="no-available-movies">No available Movies.</h1>
+</div>
+
 <app-pagination
-        *ngIf="displayPagination"
+        *ngIf="displayPagination && movies"
         [currentPage]="currentPage"
         [totalPages]="totalPages"
         (previous)="previousPage()"

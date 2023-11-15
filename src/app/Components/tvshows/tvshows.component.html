@@ -4,8 +4,11 @@
 <div class="movies" *ngIf="tvShows != undefined">
   <app-movie-card *ngFor="let tvShow of tvShows?.results" [tvShow]="tvShow"></app-movie-card>
 </div>
+<div class="movies" *ngIf="tvShows == undefined">
+  <h1 class="no-available-tvshows">No available TvShows.</h1>
+</div>
 <app-pagination
-        *ngIf="displayPagination"
+        *ngIf="displayPagination && tvShows"
         [currentPage]="currentPage"
         [totalPages]="totalPages"
         (previous)="previousPage()"

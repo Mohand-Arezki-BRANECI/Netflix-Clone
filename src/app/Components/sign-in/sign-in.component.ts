@@ -14,7 +14,6 @@ export class SignInComponent implements OnInit{
 
   constructor(private appComponent: AppComponent, private fb: FormBuilder, private router: Router) {
     this.appComponent.showNavbar = false;
-
     this.signInForm = this.fb.group({
       userEmail: ['', [Validators.required, Validators.email]],
       userPassword: ['', Validators.required]
@@ -38,10 +37,10 @@ export class SignInComponent implements OnInit{
       alert("Error : Email or Password incorrect")
     }
   }
-  protected onSubmit(){
+  protected onSubmit():void{
     this.setSignInFormData(this.signInForm.value)
   }
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const localData : string | null = localStorage.getItem('signedUpUsers');
     if(localData != null){
       this.signedInUsers = JSON.parse(localData)

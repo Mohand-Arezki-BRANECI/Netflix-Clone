@@ -4,7 +4,6 @@
   text-align: center;
   width: 100%;
 }
-
 button {
   background-color: #e50914; /* Netflix red color */
   color: #fff;
@@ -12,12 +11,9 @@ button {
   padding: 10px 20px;
   cursor: pointer;
 }
-
 button:hover {
   background-color: #b70000; /* Slightly darker red on hover */
 }
-
-
 #logoutBtn{
   position: fixed;
   top: 15vh;
@@ -26,30 +22,24 @@ button:hover {
   border-radius: 8px;
   transition: 0.4s;
 }
-
 #logoutBtn:hover{
   background-color: white;
   color: black;
 }
-
-
 .movieCard{
   max-width: 20vw;
 }
-
 .mySpaceMovieShow{
     display: flex;
     flex-wrap: wrap;
     margin : 0vh 9vw;
 }
-
 .movieStateTitle{
   color:white;
   font-size: 2vw;
   padding: 3vh 0vw 3vh 3vw;
   font-weight: bold;
 }
-
 .seenMovieShow,
 .mustSeeMovieShow,
 favoriteMovieShow{
