@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Movie, Movies} from "../../Model/movie";
-import {MovieDetailService} from "../../Service/MovieDetail/movie-detail.service";
+import {Component} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {Movies} from "../../Model/movie";
+import {DetailsService} from "../../Service/DetailsMovieTvShow/details.service";
 import {
   faFileLines,
   faFireFlameCurved,
@@ -10,9 +10,8 @@ import {
   faStar,
   faTicket
 } from "@fortawesome/free-solid-svg-icons";
-import {Observable} from "rxjs";
 import {TvShows} from "../../Model/tvShow";
-import {MoviesService} from "../../Service/MovieList/movies.service";
+import {ListService} from "../../Service/ListMoviesTvShows/list.service";
 
 @Component({
   selector: 'app-movie-details',
@@ -22,8 +21,6 @@ import {MoviesService} from "../../Service/MovieList/movies.service";
 export class MovieDetailsComponent{
   movieId !: String ;
   movieDetail ?: Movies ;
-  movieDetail$ !: Observable<Movies> ;
-  movieTitle !:String;
   tvShowId : String = '';
   tvShowDetail? : TvShows;
 
@@ -43,15 +40,15 @@ export class MovieDetailsComponent{
 
 
 
-  constructor(private route: ActivatedRoute, private movie : MovieDetailService, public service : MoviesService) {
-    this.movieDetail$ =  movie.getDataMovieDetail(this.movieId);
+  constructor(private route: ActivatedRoute, private movie : DetailsService, public service : ListService) {
     this.route.params.subscribe(params => {
       this.movieId = params['id'];
       this.tvShowId = params['id'];
+      if(this.movieId != undefined){
       movie?.getDataMovieDetail(this.movieId)?.subscribe(movie => {
         this.movieDetail = movie;
         this.initializeFromLocalStorage();
-      })
+      })}
       if(this.tvShowId != undefined){
         movie?.getDataTvShowsDetail(this.tvShowId)?.subscribe(tvShow => {
           this.tvShowDetail = tvShow;

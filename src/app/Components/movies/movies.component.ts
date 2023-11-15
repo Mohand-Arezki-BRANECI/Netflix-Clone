@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {MoviesService} from '../../Service/MovieList/movies.service'
+import {ListService} from '../../Service/ListMoviesTvShows/list.service'
 import {Movie} from "../../Model/movie";
+import {SearchService} from "../../Service/Search/search.service";
 
 @Component({
   selector: 'app-movies',
@@ -12,42 +13,31 @@ export class MoviesComponent {
   receivedMovies: Movie | undefined;
   currentPage: number = 1;
   totalPages: number  = 0;
-
     @Input() displayPagination: boolean = true;
-    constructor(private movie : MoviesService) {
+    constructor(private movie : ListService, private search : SearchService) {
     this.movie.getData(this.currentPage).subscribe(data => {
       this.movies = data;
-      console.log("the movies fetched from movies : ", this.movies)
         this.totalPages = this.movies.total_pages
     })
-     this.movie.getMessage().subscribe(films =>{
+     this.search.getMessage().subscribe(films =>{
       this.receivedMovies = films;
-      console.log("films ::::::::::::::::::::::: " , this.receivedMovies);
     })
 
   }
-
-    loadMovies(page: number) {
-        this.movie.getData(page).subscribe((data) => {
+    loadMovies(page: number) : void {
+        this.movie.getData(page).subscribe((data:Movie):void => {
             this.movies = data;
             this.currentPage = data.page;
             this.totalPages = data.total_pages;
             console.log('Movies fetched from page', this.currentPage, this.movies);
         });
-
-
     }
-
-    nextPage() {
-
+    nextPage(): void {
         if (this.currentPage < this.totalPages) {
             this.loadMovies(this.currentPage + 1);
         }
-
     }
-
-    previousPage() {
-
+    previousPage():void {
         if (this.currentPage > 1) {
             this.loadMovies(this.currentPage - 1);
         }

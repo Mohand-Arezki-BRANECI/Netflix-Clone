@@ -1,4 +1,3 @@
-<!-- movie-card.component.html -->
 <div class="movieCard" *ngIf="movie || tvShow">
   <div class="movie">
     <div class="iconMovieState">
@@ -25,22 +24,18 @@
       ></fa-icon>
     </div>
     <div class="moviePicture" (click)="navigateToDetail()" *ngIf="movie">
-      <a routerLink="/movie_details">
-        <img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" (error)="'https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}'" alt="" />
-      </a>
+      <img src="https://image.tmdb.org/t/p/w500/{{movie?.poster_path}}" onerror="this.classList.add('error-image'); this.src='../../../assets/error.png'" alt="" />
     </div>
 
     <div class="moviePicture" (click)="navigateToTvShowDetail()" *ngIf="tvShow">
-      <a routerLink="/tvshow_details">
-        <img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt="" />
-      </a>
+      <img src="https://image.tmdb.org/t/p/w500/{{tvShow?.poster_path}}" alt="" />
     </div>
   </div>
   <div class="textMovie">
-    <div class="movieOriginalTitle">{{movie?.original_title || tvShow?.original_name}}</div>
+    <div class="movieOriginalTitle">{{movie?.original_title || tvShow?.original_name || 'No Title Available'}}</div>
     <br />
     <div class="movieOtherInformations">
-      Popularity: {{movie?.popularity || tvShow?.popularity}}
+      Popularity: {{movie?.popularity || tvShow?.popularity || 'No Popularity Available'}}
       <br />
       Release date: {{changeFormatDate(movie?.release_date || tvShow?.first_air_date)}}
     </div>

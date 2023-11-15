@@ -2,10 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Movies} from "../../Model/movie";
 import {faSquareCheck, faStar, faTicket} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
-
-
 import {TvShows} from "../../Model/tvShow";
-import {MoviesService} from "../../Service/MovieList/movies.service";
+import {ListService} from "../../Service/ListMoviesTvShows/list.service";
+import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 
 @Component({
   selector: 'app-movie-card',
@@ -18,17 +17,17 @@ export class MovieCardComponent implements OnInit{
   @Input() searchResult : Movies | undefined
 
 
-  protected readonly faStar = faStar;
-  protected readonly faTicket = faTicket;
-  protected readonly faSquareCheck = faSquareCheck;
+  protected readonly faStar : IconDefinition = faStar;
+  protected readonly faTicket : IconDefinition = faTicket;
+  protected readonly faSquareCheck : IconDefinition = faSquareCheck;
 
-  isFavoriteClass = 'icon-not-favorite';
-  isMustSeeClass = 'icon-not-favorite';
-  isSeenClass = 'icon-not-favorite ';
+  isFavoriteClass : string = 'icon-not-favorite';
+  isMustSeeClass :string = 'icon-not-favorite';
+  isSeenClass : string = 'icon-not-favorite ';
   date : string = '';
-  months = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+  months: string [] = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
-  constructor(private router: Router, private service: MoviesService) {}
+  constructor(private router: Router, private service: ListService) {}
 
   ngOnInit() {
     this.initializeFromLocalStorage();
@@ -60,7 +59,7 @@ export class MovieCardComponent implements OnInit{
     }
   }
 
-  addToFavorite(movieId: number | undefined){
+  addToFavorite(movieId: number | undefined): void{
     if(movieId != undefined){
       if(this.isFavoriteClass == 'icon-favorite'){
         this.isFavoriteClass = 'icon-not-favorite fa-fade !important';
@@ -92,7 +91,7 @@ export class MovieCardComponent implements OnInit{
     }
   }
 
-  addToMustSee(movieId: number | undefined){
+  addToMustSee(movieId: number | undefined) : void{
     if(movieId != undefined){
       if(this.isMustSeeClass == 'icon-favorite'){
         this.isMustSeeClass = 'icon-not-favorite fa-shake !important'
@@ -124,10 +123,10 @@ export class MovieCardComponent implements OnInit{
     }
   }
 
-  addToSeen(movieId: number | undefined){
+  addToSeen(movieId: number | undefined): void{
     if(this.isSeenClass == 'icon-favorite'){
       this.isSeenClass = "icon-not-favorite fa-flip";
-      setTimeout(() => {
+      setTimeout(():void => {
         this.isSeenClass = "icon-not-favorite";
       }, 1000);
       if(this.movie == undefined){
@@ -139,7 +138,7 @@ export class MovieCardComponent implements OnInit{
       this.isSeenClass = "icon-favorite fa-flip";
       this.isFavoriteClass = "icon-not-favorite";
       this.isMustSeeClass = "icon-not-favorite";
-      setTimeout(() => {
+      setTimeout((): void => {
         this.isSeenClass = "icon-favorite";
         this.isFavoriteClass = "icon-not-favorite";
         this.isMustSeeClass = "icon-not-favorite";
@@ -153,21 +152,23 @@ export class MovieCardComponent implements OnInit{
   }
 
   changeFormatDate(ymd: string | undefined):String{
-    if(ymd == undefined){
-      return "";
+    if(ymd == undefined || ymd == ""){
+      return "No Date Available";
     }else{
       return ymd.split("-")[2] + " " + this.months[parseInt(ymd.split("-")[1])] + " " + ymd.split("-")[0]
     }
   }
 
-  navigateToDetail() {
+  navigateToDetail(): void {
     this.service.isMovie = true;
     this.router.navigate(['/movie_details', this.movie?.id]).then();
   }
 
-  navigateToTvShowDetail(){
+  navigateToTvShowDetail(): void{
     this.service.isMovie = false;
     this.router.navigate(['/movie_details',this.tvShow?.id]).then();
   }
+
+
 
 }
