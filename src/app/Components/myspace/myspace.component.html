@@ -1,7 +1,21 @@
 <div id="moviePageTitle" class="header">My Space</div>
 <button (click)="logout()">Logout</button>
 
-<div class="favoriteMovieShow" *ngIf="favorisFromLocalStorage != undefined">
-  <app-movie-card *ngFor="let movie of favorisFromLocalStorage" [movie]=""></app-movie-card>
+
+<div class="favoriteMovieShow" *ngIf="favoriteFromLocalStorage.length != 0">
+  <span class="movieStateTitle">Favorite</span>
+  <app-movie-card *ngFor="let movies of favoriteMovie" [movie]="movies" ></app-movie-card>
+  <app-movie-card *ngFor="let tvShows of favoriteTvShows" [tvShow]="tvShows" ></app-movie-card>
 </div>
+<div class="mustSeeMovieShow" *ngIf="mustSeeFromLocalStorage.length != 0">
+  <span class="movieStateTitle" >MustSee</span>
+  <app-movie-card *ngFor="let movies of mustSeeMovie" [movie]="movies" ></app-movie-card>
+  <app-movie-card *ngFor="let tvShows of mustSeeTvShows" [tvShow]="tvShows" ></app-movie-card>
+</div>
+<div class="seenMovieShow" *ngIf="seenFromLocalStorage.length != 0">
+  <span class="movieStateTitle">Seen</span>
+  <app-movie-card *ngFor="let movies of seenMovie" [movie]="movies" ></app-movie-card>
+  <app-movie-card *ngFor="let tvShows of seenTvShows" [tvShow]="tvShows" ></app-movie-card>
+</div>
+
 

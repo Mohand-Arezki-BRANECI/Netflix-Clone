@@ -36,9 +36,9 @@ export class MovieDetailsComponent{
   protected readonly faTicket = faTicket;
   protected readonly faSquareCheck = faSquareCheck;
 
-  isFavoriteClass = '';
-  isMustSeeClass = '';
-  isSeenClass = '';
+  isFavoriteClass = 'icon-not-favorite';
+  isMustSeeClass = 'icon-not-favorite';
+  isSeenClass = 'icon-not-favorite';
   months = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec",]
 
 
