@@ -9,8 +9,8 @@ import {TvShows} from "../../Model/tvShow";
   styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent {
-  searchResultsMovies: Movies[] =[];
-  searchResultsTvShows: TvShows[] =[];
+  protected searchResultsMovies: Movies[] =[];
+  protected searchResultsTvShows: TvShows[] =[];
 
   constructor(private movie : SearchService) {
     this.movie.getMessage().subscribe(films => {
