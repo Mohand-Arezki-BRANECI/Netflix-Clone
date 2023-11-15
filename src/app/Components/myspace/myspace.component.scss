@@ -1,10 +1,8 @@
 .header {
-  background-color: #111;
   color: #fff;
   padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 button {
@@ -19,6 +17,41 @@ button:hover {
   background-color: #b70000; /* Slightly darker red on hover */
 }
 
-.favoriteMovieShow{
-  display: flex;
+
+#logoutBtn{
+  position: fixed;
+  top: 15vh;
+  right: 3vw;
+  border:solid 1px black;
+  border-radius: 8px;
+  transition: 0.4s;
+}
+
+#logoutBtn:hover{
+  background-color: white;
+  color: black;
+}
+
+
+.movieCard{
+  max-width: 20vw;
+}
+
+.mySpaceMovieShow{
+    display: flex;
+    flex-wrap: wrap;
+    margin : 0vh 9vw;
+}
+
+.movieStateTitle{
+  color:white;
+  font-size: 2vw;
+  padding: 3vh 0vw 3vh 3vw;
+  font-weight: bold;
+}
+
+.seenMovieShow,
+.mustSeeMovieShow,
+favoriteMovieShow{
+  margin-top: 3vh;
 }

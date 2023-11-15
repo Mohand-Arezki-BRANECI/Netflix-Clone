@@ -42,7 +42,7 @@ export class MovieCardComponent implements OnInit{
       } else if (movieState === "mustSee") {
         this.isMustSeeClass = 'icon-favorite';
       } else if (movieState === "seen") {
-        this.isMustSeeClass = 'icon-favorite';
+        this.isSeenClass = 'icon-favorite';
       }else {
         this.isFavoriteClass = 'icon-not-favorite';
       }
@@ -53,7 +53,7 @@ export class MovieCardComponent implements OnInit{
       } else if (tvShowState === "mustSee") {
         this.isMustSeeClass = 'icon-favorite';
       } else if (tvShowState === "seen") {
-        this.isMustSeeClass = 'icon-favorite';
+        this.isSeenClass = 'icon-favorite';
       }else {
         this.isFavoriteClass = 'icon-not-favorite';
       }
