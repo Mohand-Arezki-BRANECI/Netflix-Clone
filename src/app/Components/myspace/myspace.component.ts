@@ -32,7 +32,7 @@ export class MyspaceComponent implements OnInit{
     this.router.navigate(['/sign_in']).then(r => true);
   }
   ngOnInit():void {
-    for (let i = 0; i < localStorage.length; i++) {
+    for (let i: number = 0; i < localStorage.length; i++) {
       let key:string | null = localStorage.key(i);
 
       if(key != null) {
@@ -45,7 +45,7 @@ export class MyspaceComponent implements OnInit{
         }
       }
     }
-    for (let f=0; f < this.favoriteFromLocalStorage.length; f++){
+    for (let f: number= 0; f < this.favoriteFromLocalStorage.length; f++){
       let keyFav = this.favoriteFromLocalStorage[f];
       if(keyFav != null) {
         if(keyFav.split('M')[0] != keyFav){
@@ -62,12 +62,12 @@ export class MyspaceComponent implements OnInit{
       }
     }
 
-    for (let ms=0; ms < this.mustSeeFromLocalStorage.length; ms++){
-      let keyMS = this.mustSeeFromLocalStorage[ms];
+    for (let ms : number=0; ms < this.mustSeeFromLocalStorage.length; ms++){
+      let keyMS: String = this.mustSeeFromLocalStorage[ms];
       if(keyMS != null) {
         if(keyMS.split('M')[0] != keyMS){
           this.service.getDataMovieDetail(keyMS.split('M')[0])
-            .subscribe(movie => {
+            .subscribe(movie  => {
               this.mustSeeMovie.push(movie);
             });
         }else if(keyMS.split('TVS')[0] != keyMS){
@@ -79,10 +79,10 @@ export class MyspaceComponent implements OnInit{
       }
     }
 
-    for (let s=0; s < this.seenFromLocalStorage.length; s++){
+    for (let s: number=0; s < this.seenFromLocalStorage.length; s++){
       console.log(this.seenFromLocalStorage)
 
-      let keyS = this.seenFromLocalStorage[s];
+      let keyS :String = this.seenFromLocalStorage[s];
       console.log(keyS)
       if(keyS != null) {
         if(keyS.split('M')[0] != keyS){

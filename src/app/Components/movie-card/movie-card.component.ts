@@ -29,13 +29,12 @@ export class MovieCardComponent implements OnInit{
 
   constructor(private router: Router, private service: ListService) {}
 
-  ngOnInit() {
+  ngOnInit():void {
     this.initializeFromLocalStorage();
   }
-
-  private initializeFromLocalStorage() {
+  private initializeFromLocalStorage(): void {
     if(this.movie != undefined){
-      const movieState = localStorage.getItem(String(this.movie.id)+"M");
+      const movieState : string | null = localStorage.getItem(String(this.movie.id)+"M");
       if (movieState === "favorite") {
         this.isFavoriteClass = 'icon-favorite';
       } else if (movieState === "mustSee") {
@@ -46,7 +45,7 @@ export class MovieCardComponent implements OnInit{
         this.isFavoriteClass = 'icon-not-favorite';
       }
     }else if(this.tvShow != undefined){
-      const tvShowState = localStorage.getItem(String(this.tvShow.id)+"TVS");
+      const tvShowState: string | null = localStorage.getItem(String(this.tvShow.id)+"TVS");
       if (tvShowState === "favorite") {
         this.isFavoriteClass = 'icon-favorite';
       } else if (tvShowState === "mustSee") {
@@ -76,7 +75,7 @@ export class MovieCardComponent implements OnInit{
         this.isFavoriteClass = 'icon-favorite fa-beat !important';
         this.isSeenClass = "icon-not-favorite";
         this.isMustSeeClass = "icon-not-favorite";
-        setTimeout(() => {
+        setTimeout((): void => {
           this.isFavoriteClass = "icon-favorite";
           this.isSeenClass = "icon-not-favorite";
           this.isMustSeeClass = "icon-not-favorite";
@@ -122,7 +121,6 @@ export class MovieCardComponent implements OnInit{
       }
     }
   }
-
   addToSeen(movieId: number | undefined): void{
     if(this.isSeenClass == 'icon-favorite'){
       this.isSeenClass = "icon-not-favorite fa-flip";
@@ -150,7 +148,6 @@ export class MovieCardComponent implements OnInit{
       }
     }
   }
-
   changeFormatDate(ymd: string | undefined):String{
     if(ymd == undefined || ymd == ""){
       return "No Date Available";
@@ -158,17 +155,12 @@ export class MovieCardComponent implements OnInit{
       return ymd.split("-")[2] + " " + this.months[parseInt(ymd.split("-")[1])] + " " + ymd.split("-")[0]
     }
   }
-
   navigateToDetail(): void {
     this.service.isMovie = true;
     this.router.navigate(['/movie_details', this.movie?.id]).then();
   }
-
   navigateToTvShowDetail(): void{
     this.service.isMovie = false;
     this.router.navigate(['/movie_details',this.tvShow?.id]).then();
   }
-
-
-
 }

@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {TvShows} from "../../Model/tvShow";
 import {ListService} from "../../Service/ListMoviesTvShows/list.service";
+import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 
 @Component({
   selector: 'app-movie-details',
@@ -25,20 +26,18 @@ export class MovieDetailsComponent{
   tvShowDetail? : TvShows;
 
 
-  protected readonly faFileLines = faFileLines;
-  protected readonly faFireFlameCurved = faFireFlameCurved;
-  protected readonly faRightFromBracket = faRightFromBracket;
-  protected readonly faStar = faStar;
-  protected readonly faRankingStar = faRankingStar;
-  protected readonly faTicket = faTicket;
-  protected readonly faSquareCheck = faSquareCheck;
+  protected readonly faFileLines : IconDefinition = faFileLines;
+  protected readonly faFireFlameCurved: IconDefinition = faFireFlameCurved;
+  protected readonly faRightFromBracket: IconDefinition = faRightFromBracket;
+  protected readonly faStar: IconDefinition = faStar;
+  protected readonly faRankingStar: IconDefinition = faRankingStar;
+  protected readonly faTicket: IconDefinition = faTicket;
+  protected readonly faSquareCheck: IconDefinition = faSquareCheck;
 
-  isFavoriteClass = 'icon-not-favorite';
-  isMustSeeClass = 'icon-not-favorite';
-  isSeenClass = 'icon-not-favorite';
-  months = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec",]
-
-
+  isFavoriteClass: string = 'icon-not-favorite';
+  isMustSeeClass: string = 'icon-not-favorite';
+  isSeenClass: string = 'icon-not-favorite';
+  months: string[] = ["Jan", "Feb", "Mar", "Apr","May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec",]
 
   constructor(private route: ActivatedRoute, private movie : DetailsService, public service : ListService) {
     this.route.params.subscribe(params => {
@@ -58,10 +57,9 @@ export class MovieDetailsComponent{
     });
   }
 
-  private initializeFromLocalStorage() {
-    // Vérifie si this.movie existe avant d'effectuer des opérations sur ses propriétés
-      const movieState = localStorage.getItem(String(this.movieId)+"M");
-      const tvShowState = localStorage.getItem(String(this.tvShowId)+"TVS");
+  private initializeFromLocalStorage() : void {
+      const movieState : string | null = localStorage.getItem(String(this.movieId)+"M");
+      const tvShowState : string | null = localStorage.getItem(String(this.tvShowId)+"TVS");
       if (movieState === "favorite" || tvShowState === "favorite") {
         this.isFavoriteClass = 'icon-favorite';
       } else if (movieState === "mustSee" || tvShowState === "mustSee") {
@@ -73,7 +71,7 @@ export class MovieDetailsComponent{
       }
   }
 
-  stateFavorite(movieId: number | undefined){
+  stateFavorite(movieId: number | undefined) : void{
     if(movieId != undefined){
       if(this.isFavoriteClass == 'icon-favorite'){
         this.isFavoriteClass = 'icon-not-favorite fa-fade';
@@ -103,7 +101,7 @@ export class MovieDetailsComponent{
     }
   }
 
-  stateMustSee(movieId: number | undefined){
+  stateMustSee(movieId: number | undefined) : void{
     if(movieId != undefined){
       if(this.isMustSeeClass == 'icon-favorite'){
         this.isMustSeeClass = 'icon-not-favorite fa-shake'
@@ -132,7 +130,7 @@ export class MovieDetailsComponent{
     }
   }
 
-  stateSeen(movieId: number | undefined){
+  stateSeen(movieId: number | undefined) : void{
     if(this.isSeenClass == 'icon-favorite'){
       this.isSeenClass = "icon-not-favorite fa-flip";
       setTimeout(() => {
@@ -147,7 +145,7 @@ export class MovieDetailsComponent{
       this.isSeenClass = "icon-favorite fa-flip";
       this.isFavoriteClass = "icon-not-favorite";
       this.isMustSeeClass = "icon-not-favorite";
-      setTimeout(() => {
+      setTimeout(() : void => {
         this.isSeenClass = "icon-favorite";
       }, 1000);
       if(this.movieDetail == undefined){

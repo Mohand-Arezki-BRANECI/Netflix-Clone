@@ -1,9 +1,7 @@
 <div id="moviePageTitle">MOVIES</div>
-
 <div class="movies" *ngIf="movies != undefined">
     <app-movie-card *ngFor="let movie of movies?.results" [movie]="movie"></app-movie-card>
 </div>
-
 <app-pagination
         *ngIf="displayPagination"
         [currentPage]="currentPage"
