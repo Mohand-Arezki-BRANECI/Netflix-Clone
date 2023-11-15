@@ -8,6 +8,7 @@ import {TvshowsComponent} from "./Components/tvshows/tvshows.component";
 import {MovieDetailsComponent} from "./Components/movie-details/movie-details.component";
 import {SearchResultsComponent} from "./Components/search-results/search-results.component";
 import {MyspaceComponent} from "./Components/myspace/myspace.component";
+import {Error404Component} from "./Components/error404/error404.component";
 
 
 const routes: Routes = [
@@ -20,8 +21,7 @@ const routes: Routes = [
   { path: 'movie_details/:id', component: MovieDetailsComponent },
   { path: 'search_results', component: SearchResultsComponent },
   { path: 'myspace', component: MyspaceComponent },
-
-
+  { path: '**', component: Error404Component}
 ];
 
 @NgModule({
