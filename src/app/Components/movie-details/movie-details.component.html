@@ -56,7 +56,7 @@
 <div class="movieDetailCard" *ngIf="tvShowDetail !== undefined && !service.isMovie">
 
   <div class="movieHeader">
-  <span id="TvShowTitle">{{tvShowDetail?.original_name}}</span>
+  <span id="tvShowTitle">{{tvShowDetail?.original_name}}</span>
   <fa-icon data-toggle="tooltip" title="Favoris" [icon]="faStar" [ngClass]="isFavoriteClass" (click)="stateFavorite(movieDetail?.id)"></fa-icon>
   <fa-icon data-toggle="tooltip" title="MustSee" [icon]="faTicket" [ngClass]="isMustSeeClass" (click)="stateMustSee(movieDetail?.id)"></fa-icon>
   <fa-icon data-toggle="tooltip" title="Seen" [icon]="faSquareCheck" [ngClass]="isSeenClass" (click)="stateSeen(movieDetail?.id)"></fa-icon>
