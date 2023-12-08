@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {DetailsService} from "../../Service/DetailsMovieTvShow/details.service";
 import {Movies} from "../../Model/movie";
 import {TvShows} from "../../Model/tvShow";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-myspace',
@@ -19,13 +20,15 @@ export class MyspaceComponent implements OnInit{
   protected mustSeeTvShows: TvShows[] = [];
   protected seenMovie: Movies[] = [];
   protected seenTvShows: TvShows[] = [];
+  protected lang : string ='';
 
-  constructor(private router: Router, private service:DetailsService) { }
+  constructor(private router: Router, private service:DetailsService, private translateService : TranslateService) { }
 
   protected logout():void {
     this.router.navigate(['/sign_in']).then();
   }
   ngOnInit():void {
+    this.lang = localStorage.getItem('lang') || 'en';
     for (let i: number = 0; i < localStorage.length; i++) {
       let key:string | null = localStorage.key(i);
       if(key != null) {
@@ -87,5 +90,14 @@ export class MyspaceComponent implements OnInit{
         }
       }
     }
+  }
+
+  protected ChangeLang(lang:any): void{
+    const selectedLanguage = lang.target.value;
+
+    localStorage.setItem('lang',selectedLanguage);
+
+    this.translateService.use(selectedLanguage);
+
   }
 }

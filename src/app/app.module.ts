@@ -10,7 +10,7 @@ import { TvshowsComponent } from './Components/tvshows/tvshows.component';
 import { HomepageComponent } from './Components/homepage/homepage.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SignUpComponent} from "./Components/sign-up/sign-up.component";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { MovieCardComponent } from './Components/movie-card/movie-card.component';
 import {NgOptimizedImage} from "@angular/common";
 import { MovieDetailsComponent } from './Components/movie-details/movie-details.component';
@@ -21,7 +21,11 @@ import { SearchResultsComponent } from './Components/search-results/search-resul
 import {PaginationComponent} from "./Components/pagination/pagination.component";
 import { MyspaceComponent } from './Components/myspace/myspace.component';
 import { Error404Component } from './Components/error404/error404.component';
-
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+export function HttpLoaderFactory(http:HttpClient){
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +53,15 @@ import { Error404Component } from './Components/error404/error404.component';
         NgOptimizedImage,
         FontAwesomeModule,
         MatPaginatorModule,
+      TranslateModule.forRoot(
+        {
+          loader:{
+            provide:TranslateLoader,
+            useFactory:HttpLoaderFactory,
+            deps:[HttpClient]
+          }
+        }
+      )
     ],
   providers: [],
   bootstrap: [AppComponent]

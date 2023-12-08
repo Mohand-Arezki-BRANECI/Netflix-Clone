@@ -2,22 +2,22 @@
 <div class="main">
   <div class="signup text-center">
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-      <label>Sign up</label>
-      <input type="text" name="userName" placeholder="User name" formControlName="userName">
+      <label>{{'signUp' | translate}}</label>
+      <input type="text" name="userName" placeholder="{{'username' | translate}}" formControlName="userName">
       <br>
-        <span class="text-danger" *ngIf="userNameControl?.invalid && userNameControl?.touched">Name is required</span>
+        <span class="text-danger" *ngIf="userNameControl?.invalid && userNameControl?.touched">{{'nameRequired' | translate}}</span>
       <br>
-      <input type="email" name="userEmail" placeholder="Email" formControlName="userEmail">
+      <input type="email" name="userEmail" placeholder="{{'email' | translate}}" formControlName="userEmail">
       <br>
-        <span class="text-danger" *ngIf="userEmailControl?.invalid && userEmailControl?.touched">This email is not valid</span>
+        <span class="text-danger" *ngIf="userEmailControl?.invalid && userEmailControl?.touched">{{'emailNotValid' | translate}}</span>
       <br>
-      <input type="password" name="userPassword" placeholder="Password" formControlName="userPassword">
+      <input type="password" name="userPassword" placeholder="{{'password' | translate}}" formControlName="userPassword">
       <br>
-        <span class="text-danger" *ngIf="userPasswordControl?.invalid && userPasswordControl?.touched">Password is required</span>
+        <span class="text-danger" *ngIf="userPasswordControl?.invalid && userPasswordControl?.touched">{{'passwordRequired'}}</span>
       <br>
-      <button type="submit" [disabled]="!signUpForm.valid">Sign up</button>
+      <button type="submit" [disabled]="!signUpForm.valid">{{'signUp' | translate}}</button>
     </form>
-    <a [routerLink]="['/sign_in']">Already got an account, Sign In!</a>
+    <a [routerLink]="['/sign_in']">{{'gotAccount' | translate}}</a>
   </div>
 </div>
 </div>

@@ -1,4 +1,4 @@
-<div id="moviePageTitle">MOVIES</div>
+<div id="moviePageTitle">{{'movies' | translate}}</div>
 
 <div class="movies" *ngIf="movies != undefined">
     <app-movie-card *ngFor="let movie of movies?.results" [movie]="movie"></app-movie-card>

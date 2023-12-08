@@ -3,13 +3,13 @@
 
 
   <div *ngIf="searchResultsMovies !== undefined && searchResultsMovies.length != 0">
-    <span class="titleSearch">MOVIES</span>
+    <span class="titleSearch">{{'movies' | translate}}</span>
     <div class="flex">
     <app-movie-card *ngFor="let movie of searchResultsMovies" [movie]="movie"></app-movie-card>
     </div>
     </div>
     <div *ngIf="searchResultsTvShows !== undefined && searchResultsTvShows.length != 0">
-      <span class="titleSearch">TV SHOW</span>
+      <span class="titleSearch">{{'tvShows' | translate}}</span>
       <div class="flex">
       <app-movie-card *ngFor="let tvShow of searchResultsTvShows" [tvShow]="tvShow"></app-movie-card>
       </div>
@@ -20,7 +20,7 @@
   </ng-container>
 
   <ng-template #noMovies>
-    <h1 class="no-available-movies">No movies available.</h1>
+    <h1 class="no-available-movies">{{'noMoviesAvailable.' | translate}}</h1>
   </ng-template>
 </div>
 

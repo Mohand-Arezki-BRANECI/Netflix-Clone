@@ -36,3 +36,34 @@
   transform: scale(1.2);
   transition: 0.5s;
 }
+
+.netflix-select {
+  background-color: #111; /* Dark background color */
+  color: #fff; /* Text color */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+}
+
+.netflix-select::after {
+  content: '\25BC'; /* Unicode character for a down arrow */
+  font-size: 16px;
+  color: #fff;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.netflix-select option {
+  background-color: #222; /* Darker background color for options */
+  color: #fff;
+  font-size: 16px;
+}
+
+.netflix-select option:hover {
+  background-color: #333; /* Darker background color on hover */
+}

@@ -11,25 +11,25 @@
     <img class="moviePicture" src="https://image.tmdb.org/t/p/w500/{{service.isMovie ? movieDetail?.poster_path : tvShowDetail?.poster_path}}" alt="">
     <div class="movieInfs">
       <fa-icon [icon]="faFileLines" class="iconMovieInfo"></fa-icon>
-      <span class="movieInfoTitle">Summary :</span>
+      <span class="movieInfoTitle">{{'summary' | translate}} :</span>
       <div class="movieInfo">
         {{service.isMovie ? movieDetail?.overview : tvShowDetail?.overview}}
       </div>
 
       <fa-icon [icon]="faFireFlameCurved" class="iconMovieInfo"></fa-icon>
-      <span class="movieInfoTitle">Popularity :</span>
+      <span class="movieInfoTitle">{{'popularity' | translate}} :</span>
       <div class="movieInfo">
         {{service.isMovie ? movieDetail?.popularity : tvShowDetail?.popularity}}
       </div>
 
       <fa-icon [icon]="faRightFromBracket" class="iconMovieInfo"></fa-icon>
-      <span class="movieInfoTitle">Release :</span>
+      <span class="movieInfoTitle">{{'releaseDate' | translate}} :</span>
       <div class="movieInfo">
         {{service.isMovie ? changeFormatDate(movieDetail?.release_date) : changeFormatDate(tvShowDetail?.first_air_date)}}
       </div>
 
       <fa-icon [icon]="faRankingStar" class="iconMovieInfo"></fa-icon>
-      <span class="movieInfoTitle">Vote :</span>
+      <span class="movieInfoTitle">{{'vote' | translate}} :</span>
       <div class="movieInfo">
         <fa-icon [icon]="faRankingStar"></fa-icon>
         {{service.isMovie ? movieDetail?.vote_average : tvShowDetail?.vote_average}}/10 on {{service.isMovie ? movieDetail?.vote_count : tvShowDetail?.vote_count}} views.
