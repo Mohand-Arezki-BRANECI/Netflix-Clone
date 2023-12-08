@@ -35,9 +35,9 @@
     <div class="movieOriginalTitle">{{movie?.original_title || tvShow?.original_name || 'No Title Available'}}</div>
     <br />
     <div class="movieOtherInformations">
-      Popularity: {{movie?.popularity || tvShow?.popularity || 'No Popularity Available'}}
+       {{'popularity' | translate }}: {{movie?.popularity || tvShow?.popularity || 'No Popularity Available'}}
       <br />
-      Release date: {{changeFormatDate(movie?.release_date || tvShow?.first_air_date)}}
+      {{'releaseDate' | translate }}: {{changeFormatDate(movie?.release_date || tvShow?.first_air_date)}}
     </div>
   </div>
 </div>

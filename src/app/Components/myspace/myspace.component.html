@@ -1,21 +1,29 @@
-<div id="moviePageTitle" class="header">My Space</div>
-<button (click)="logout()" id="logoutBtn">Logout</button>
+<div id="moviePageTitle" class="header">{{'mySpace' | translate}}</div>
+<button (click)="logout()" id="logoutBtn">{{'logOut' | translate}}</button>
+<label class="language">{{'chooseLang' | translate}} : </label>
+<select (change)="ChangeLang($event)" class="m-3 netflix-select" name="" id="">
+  <option [selected]="lang==='en'" value="en">English</option>
+  <option [selected]="lang==='fr'" value="fr">Français</option>
+  <option [selected]="lang==='es'" value="es">Español</option>
+  <option [selected]="lang==='md'" value="md">官話</option>
+</select>
+
 <div class="favoriteMovieShow" *ngIf="favoriteFromLocalStorage.length != 0">
-  <span class="movieStateTitle">Favorite</span>
+  <span class="movieStateTitle">{{'favorite' | translate}}</span>
   <div class="mySpaceMovieShow">
   <app-movie-card *ngFor="let movies of favoriteMovie" [movie]="movies" ></app-movie-card>
   <app-movie-card *ngFor="let tvShows of favoriteTvShows" [tvShow]="tvShows" ></app-movie-card>
   </div>
 </div>
 <div class="mustSeeMovieShow" *ngIf="mustSeeFromLocalStorage.length != 0">
-  <span class="movieStateTitle" >MustSee</span>
+  <span class="movieStateTitle" >{{'mustSee' | translate}}</span>
   <div class="mySpaceMovieShow">
   <app-movie-card *ngFor="let movies of mustSeeMovie" [movie]="movies" ></app-movie-card>
   <app-movie-card *ngFor="let tvShows of mustSeeTvShows" [tvShow]="tvShows" ></app-movie-card>
   </div>
 </div>
 <div class="seenMovieShow" *ngIf="seenFromLocalStorage.length != 0">
-  <span class="movieStateTitle">Seen</span>
+  <span class="movieStateTitle">{{'seen' | translate}}</span>
   <div class="mySpaceMovieShow">
   <app-movie-card *ngFor="let movies of seenMovie" [movie]="movies" ></app-movie-card>
   <app-movie-card *ngFor="let tvShows of seenTvShows" [tvShow]="tvShows" ></app-movie-card>
